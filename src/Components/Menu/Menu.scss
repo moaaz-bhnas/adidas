@@ -1,0 +1,21 @@
+@import '../../sass/colors', '../../sass/shared-styles.scss';
+
+.header {
+  .input-group-prepend {
+    border: 1px solid #ced4da;
+    border-right: none;
+    z-index: 1;
+
+  }
+  .input-group-text {
+    border: none;
+    background-color: transparent;
+  }
+}
+
+/* search */
+.header__searchInput {
+  border-left: none;
+  padding-left: .5rem !important;
+  padding-right: .5rem !important;
+}
