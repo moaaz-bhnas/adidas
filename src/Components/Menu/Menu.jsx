@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useCallback, useRef } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import './Menu.scss';
 import CategoriesSidebar from './CategoriesSidebar';
@@ -8,9 +8,15 @@ const egyptFlag = '/img/egypt-flag.png';
 const usFlag = '/img/us-flag.png';
 const logo = '/img/logo.png';
 const categories = ['New Arrivals', 'Men', 'Women', 'Kids', 'By Sports', 'Brands', '360'];
+const cartEntriesNum = 7;
 
 const Menu = (props) => {
+  /* refs */
+  const cartBtnRef = useRef();
+
+  /* state */
   const [ sidebarVisible, setSidebarVisible ] = useState(false);
+  const [ dropcartVisible, setDropcartVisible ] = useState(false);
   const [ searchQuery, setSearchQuery ] = useState('');
 
   const openSidebar = useCallback(() => {
@@ -20,6 +26,14 @@ const Menu = (props) => {
   const closeSidebar = useCallback(() => {
     setSidebarVisible(false);
   }, []);
+
+  const toggleCart = useCallback(() => {
+    setDropcartVisible(!dropcartVisible);
+  }, [dropcartVisible]);
+
+  const closeCart = useCallback(() => {
+    setDropcartVisible(false);
+  }, [])
 
   const updateSearchQuery = useCallback((event) => {
     setSearchQuery(event.target.value)
@@ -133,7 +147,23 @@ const Menu = (props) => {
               />
             </div>
           </form>
-        </div>
+          {/* cart button */}
+          <button 
+            className="header__cartBtn" 
+            aria-label="toggle cart dropdown"
+            aria-haspopup="true"
+            aria-expanded={dropcartVisible}
+            // aria-controls={dropCartVisible ? 'dropCartContainer' : null}
+            onClick={toggleCart}
+            // onKeyDown={handleEscKeyOnCart}
+            ref={cartBtnRef}
+          >
+            <i className="fas fa-shopping-cart" aria-hidden="true" />
+            <span className="header__cartBadge">
+              {cartEntriesNum}
+            </span>
+          </button>
+        </div> {/* main bar */}
       </div> {/* container */}
     </header>
   );
