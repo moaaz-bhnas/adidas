@@ -12,7 +12,8 @@ const cartEntriesNum = 7;
 
 const Menu = (props) => {
   /* refs */
-  const cartBtnRef = useRef();
+  const cartBtnRef        = useRef();
+  const sidebarTogglerRef = useRef();
 
   /* state */
   const [ sidebarVisible, setSidebarVisible ] = useState(false);
@@ -45,9 +46,9 @@ const Menu = (props) => {
   }, []);
 
   return (
-    <header className="header App__header">
+    <header className="header">
       <div className="container">
-        <div className="d-flex">
+        <div className="d-flex flex-column">
           {/* Secondary navigation */}
           <nav className="servicesNav">
             <h2 className="sr-only">Services Navigation</h2>
@@ -55,8 +56,8 @@ const Menu = (props) => {
             <ul className="list servicesNav__list">
               {
                 secondaryList.map((link, index) => (
-                  <li key={index}>
-                    <a href="" className="servicesNav__link">{link}</a>
+                  <li className="servicesNav__item" key={index}>
+                    <a href="#" className="link_color_white servicesNav__link">{link}</a>
                   </li>
                 ))
               }
@@ -65,19 +66,19 @@ const Menu = (props) => {
 
           {/* login + languages list */}
           <div className="auth-languages">
-            <a href="" className="header__loginLink">
-              <i className="fas fa-user" aria-hidden="true" />
+            <a href="#" className="link_color_white header__loginLink">
+              <i className="fas fa-user mr-1" aria-hidden="true" /> Log in
             </a>
 
             <ul className="list header__languagesList">
               <li>
-                <button className="header__languageBtn" aria-label="Display page in English" data-active="true">
-                  <img src={usFlag} alt="US flag"/>
+                <button className="btn header__languageBtn" aria-label="Display page in English" data-active="true">
+                  <img className="img-fluid" src={usFlag} alt="US flag"/>
                 </button>
               </li>
               <li>
-                <button className="header__languageBtn" aria-label="Display page in arabic">
-                  <img src={egyptFlag} alt="Egypy flag"/>
+                <button className="btn header__languageBtn" aria-label="Display page in arabic">
+                  <img className="img-fluid" src={egyptFlag} alt="Egypy flag"/>
                 </button>
               </li>
             </ul>
@@ -93,6 +94,7 @@ const Menu = (props) => {
             aria-expanded={sidebarVisible}
             aria-controls="categoriesSidebar"
             onClick={openSidebar}
+            ref={sidebarTogglerRef}
           >
             <i className="fas fa-bars" aria-hidden="true" />
           </button>
@@ -101,6 +103,7 @@ const Menu = (props) => {
             close={closeSidebar}
             categories={categories}
             visible={sidebarVisible}
+            ref={sidebarTogglerRef}
           />
           {/* logo */}
           <Link to="/" className="header__logoLink">
@@ -113,14 +116,14 @@ const Menu = (props) => {
               {
                 categories.map((category, index) => (
                   <li key={index}>
-                    <Link href="" className="header categoryLink">{category}</Link>
+                    <Link href="#" className="link_color_white header__categoryLink">{category}</Link>
                   </li>
                 ))
               }
             </ul>
           </nav>
           {/* Page language */}
-          <button className="btn">اللغة العربية</button>
+          <span className="header__pageLanguage">اللغة العربية</span>
           {/* search form */}
           <form 
             className="header__searchForm"
@@ -129,7 +132,7 @@ const Menu = (props) => {
             <div className="input-group">
               <button 
                 type="submit"
-                className="btn input-group-prepend p-0 bg-transparent"
+                className="btn input-group-prepend p-0"
                 onClick={handleSearchSubmit}
               >
                 <span className="input-group-text">

@@ -1,16 +1,103 @@
 @import '../../sass/colors', '../../sass/shared-styles.scss';
 
 .header {
+  font-size: .9rem;
+  background-color: $black;
+
+  @media screen and (min-width: 576px) {
+    font-size: .95rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 1rem;
+  }
+
   .input-group-prepend {
     border: 1px solid #ced4da;
+    background-color: #fff;
     border-right: none;
     z-index: 1;
-
+    border-radius: .25rem 0 0 .25rem;
   }
+
   .input-group-text {
     border: none;
     background-color: transparent;
   }
+
+  .list {
+    padding-left: 0;
+  }
+}
+
+/* services list */
+.servicesNav__list {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.servicesNav__item:not(:last-child) {
+  font-weight: 200;
+
+  .servicesNav__link {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: .9rem;
+      width: 1px;
+      background-color: #fff;
+    }
+  }
+}
+
+.servicesNav__link {
+  display: block;
+  padding: .5rem .6rem;
+}
+
+/* --- auth & languages options */
+.auth-languages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* auth */
+.header__loginLink {
+  text-transform: uppercase;
+  padding: .5rem .6rem;
+  margin-right: 1rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: .9rem;
+    width: 1px;
+    background-color: #fff;
+  }
+}
+
+/* language options */
+.header__languagesList {
+  display: flex;
+  margin-bottom: 0;
+}
+
+.header__languageBtn {
+  border: none;
+  background: transparent;
+  width: 2.5rem;
+  padding: .5rem .6rem;
+  display: flex;
 }
 
 /* search */
@@ -18,4 +105,37 @@
   border-left: none;
   padding-left: .5rem !important;
   padding-right: .5rem !important;
+}
+
+/* --- Main bar */
+.header__mainBar {
+  display: flex;
+  align-items: center;
+}
+
+/* sidebar toggler */
+.header__sidebarToggler {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: #fff;
+}
+
+/* desktop categories nav */
+.header__categoriesNav {
+  display: none;
+}
+
+/* logo */
+.header__logo {
+  width: 3rem;
+}
+
+/* page language */
+.header__pageLanguage {
+  display: none;
+  color: #fff;
 }
