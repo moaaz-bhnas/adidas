@@ -1,6 +1,14 @@
-import React, { memo, useEffect, useRef, forwardRef } from 'react';
+import React, { memo, useEffect, useRef, forwardRef, useCallback } from 'react';
 import { Link } from "react-router-dom";
 import './CategoriesSidebar.scss';
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
 
 const CategoriesSidebar = forwardRef((props, togglerRef) => {
   // props
@@ -8,19 +16,40 @@ const CategoriesSidebar = forwardRef((props, togglerRef) => {
 
   // ref
   const closeBtnRef = useRef();
+  const lastLinkRef = useRef();
 
+  const trapFocus = useCallback((e, firstElement, lastElement, closeFunc) => {
+    const esc = e.keyCode === 27;
+    const tab = e.keyCode === 9;
+    if (esc) { 
+      closeFunc();
+    } else if (tab && e.shiftKey && e.target === firstElement) {
+      e.preventDefault();
+      lastElement.focus();
+    } else if (tab && !e.shiftKey && e.target === lastElement) {
+      e.preventDefault();
+      firstElement.focus();
+    }
+  }, []);
+
+  const prevVisible = usePrevious(visible);
   useEffect(function preventBodyScrollAndFocusFirstInteractiveElement() {
     if (visible) {
       document.body.setAttribute('data-scroll', 'false');
       closeBtnRef.current.focus();
-    } else {
+    } else if (!visible && prevVisible) {
       document.body.setAttribute('data-scroll', 'true');
       togglerRef.current.focus();
     }
   }, [visible]);
 
   return (
-    <div id="categoriesSidebar" className="categoriesSidebar" aria-hidden={!visible}>
+    <div 
+      id="categoriesSidebar" 
+      className="categoriesSidebar" 
+      aria-hidden={!visible}
+      onKeyDown={(e) => { trapFocus(e, closeBtnRef.current, lastLinkRef.current, close) }}
+    >
       {/* overlay */}
       <div 
         className="categoriesSidebar__overlay" 
@@ -50,6 +79,7 @@ const CategoriesSidebar = forwardRef((props, togglerRef) => {
                   to="/category" 
                   className="categoriesSidebar__link"
                   tabIndex={visible ? 0 : -1}
+                  innerRef={(index === categories.length-1) ? lastLinkRef : null}
                 >{category}</Link>
               </li>
             ))

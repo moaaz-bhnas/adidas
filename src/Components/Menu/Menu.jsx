@@ -73,12 +73,16 @@ const Menu = (props) => {
             <ul className="list header__languagesList">
               <li>
                 <button className="btn header__languageBtn" aria-label="Display page in English" data-active="true">
-                  <img className="img-fluid" src={usFlag} alt="US flag"/>
+                  <div className="header__languageImgContainer">
+                    <img className="img-fluid" src={usFlag} alt="US flag"/>
+                  </div>
                 </button>
               </li>
               <li>
-                <button className="btn header__languageBtn" aria-label="Display page in arabic">
-                  <img className="img-fluid" src={egyptFlag} alt="Egypy flag"/>
+                <button className="btn header__languageBtn active" aria-label="Display page in arabic">
+                  <div className="header__languageImgContainer">
+                    <img className="img-fluid" src={egyptFlag} alt="Egypy flag"/>
+                  </div>
                 </button>
               </li>
             </ul>
@@ -116,7 +120,7 @@ const Menu = (props) => {
               {
                 categories.map((category, index) => (
                   <li key={index}>
-                    <Link href="#" className="link_color_white header__categoryLink">{category}</Link>
+                    <Link to="/category" className="link_color_white header__categoryLink">{category}</Link>
                   </li>
                 ))
               }
@@ -132,7 +136,7 @@ const Menu = (props) => {
             <div className="input-group">
               <button 
                 type="submit"
-                className="btn input-group-prepend p-0"
+                className="btn header__searchBtn input-group-prepend p-0"
                 onClick={handleSearchSubmit}
               >
                 <span className="input-group-text">

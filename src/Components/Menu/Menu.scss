@@ -1,5 +1,20 @@
 @import '../../sass/colors', '../../sass/shared-styles.scss';
 
+// mixin
+@mixin inner-bottom-shadow {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100vw;
+    box-shadow: inset 0 -5px 20px -20px rgba($color: #fff, $alpha: 1);
+  }
+}
+
 .header {
   font-size: .9rem;
   background-color: $black;
@@ -28,13 +43,28 @@
   .list {
     padding-left: 0;
   }
+
+  button:not(.header__searchBtn):not(.categoriesSidebar__closeBtn), 
+  a:not(.categoriesSidebar__link) {
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 .2rem rgba(255, 255, 255, 1);
+    }
+  }
 }
 
 /* services list */
+.servicesNav {
+  @include inner-bottom-shadow();
+}
+
 .servicesNav__list {
   display: flex;
   justify-content: center;
   margin-bottom: 0;
+
+  position: relative;
+  z-index: 1;
 }
 
 .servicesNav__item:not(:last-child) {
@@ -65,6 +95,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @include inner-bottom-shadow();
 }
 
 /* auth */
@@ -73,6 +105,7 @@
   padding: .5rem .6rem;
   margin-right: 1rem;
   position: relative;
+  z-index: 1;
 
   &::after {
     content: '';
@@ -90,6 +123,9 @@
 .header__languagesList {
   display: flex;
   margin-bottom: 0;
+
+  position: relative;
+  z-index: 1;
 }
 
 .header__languageBtn {
@@ -98,6 +134,29 @@
   width: 2.5rem;
   padding: .5rem .6rem;
   display: flex;
+
+  &.active,
+  &:hover,
+  &:focus {
+    .header__languageImgContainer::after {
+      background-color: transparent;
+    }
+  }
+}
+
+.header__languageImgContainer {
+  position: relative;
+  display: flex;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba($color: #000000, $alpha: .5);
+    transition: background-color .15s;
+  }
 }
 
 /* search */
@@ -138,4 +197,23 @@
 .header__pageLanguage {
   display: none;
   color: #fff;
+}
+
+/* search form */
+.header__searchForm {
+  width: 8rem;
+  margin: auto;
+}
+
+/* cart */
+.header__cartBtn {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  border-radius: .25rem;
 }
