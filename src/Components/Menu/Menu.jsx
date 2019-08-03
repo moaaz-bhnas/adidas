@@ -48,7 +48,7 @@ const Menu = (props) => {
   return (
     <header className="header">
       <div className="container">
-        <div className="d-flex flex-column">
+        <div className="header__topBar">
           {/* Secondary navigation */}
           <nav className="servicesNav">
             <h2 className="sr-only">Services Navigation</h2>
@@ -165,7 +165,7 @@ const Menu = (props) => {
             // onKeyDown={handleEscKeyOnCart}
             ref={cartBtnRef}
           >
-            <i className="fas fa-shopping-cart" aria-hidden="true" />
+            <i className="fas fa-shopping-cart fa-lg" aria-hidden="true" />
             <span className="header__cartBadge">
               {cartEntriesNum}
             </span>
