@@ -1,3 +1,12 @@
-body[data-scroll=false] {
-  overflow: hidden;
+html[data-scrollbar="false"] {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+
+  &::-webkit-scrollbar {
+    width: 0px; /* For Chrome, Safari, and Opera */
+  }
+}
+
+body {
+  min-height: 200vh;
 }

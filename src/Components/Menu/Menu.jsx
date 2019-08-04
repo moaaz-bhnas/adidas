@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback, useRef } from 'react';
+import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import './Menu.scss';
 import CategoriesSidebar from './CategoriesSidebar';
@@ -11,14 +11,16 @@ const categories = ['New Arrivals', 'Men', 'Women', 'Kids', 'By Sports', 'Brands
 const cartEntriesNum = 7;
 
 const Menu = (props) => {
-  /* refs */
-  const cartBtnRef        = useRef();
-  const sidebarTogglerRef = useRef();
-
   /* state */
   const [ sidebarVisible, setSidebarVisible ] = useState(false);
   const [ dropcartVisible, setDropcartVisible ] = useState(false);
   const [ searchQuery, setSearchQuery ] = useState('');
+  const [ topBarState, setTopBarState ] = useState({hidden: false, prevScrollPos: window.pageYOffset})
+
+  /* refs */
+  const cartBtnRef        = useRef();
+  const sidebarTogglerRef = useRef();
+  const topBarRef         = useRef();
 
   const openSidebar = useCallback(() => {
     setSidebarVisible(true);
@@ -45,10 +47,30 @@ const Menu = (props) => {
     props.history.push('./search');
   }, []);
 
+  const handleScroll = () => {
+    const scrollPos = window.pageYOffset;
+    const { prevScrollPos } = topBarState;
+    const topBarHidden = prevScrollPos < scrollPos;
+
+    setTopBarState({hidden: topBarHidden, prevScrollPos: scrollPos});
+  };
+
+  useEffect(function addScrollHandler() {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  });
+
   return (
-    <header className="header">
+    <header 
+      className="header"
+      style={{
+        top: topBarState.hidden ? `-${topBarRef.current.clientHeight}px` : 0 
+      }}
+    >
       <div className="container">
-        <div className="header__topBar">
+        <div className="header__topBar" ref={topBarRef}>
           {/* Secondary navigation */}
           <nav className="servicesNav">
             <h2 className="sr-only">Services Navigation</h2>
@@ -110,7 +132,7 @@ const Menu = (props) => {
             ref={sidebarTogglerRef}
           />
           {/* logo */}
-          <Link to="/" className="header__logoLink">
+          <Link to="/" className={`header__logoLink${topBarState.hidden ? '' : ' large'}`}>
             <img src={logo} alt="Adidas logo" className="header__logo"/>
           </Link>
           {/* desktop categories */}

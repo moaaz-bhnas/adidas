@@ -16,9 +16,16 @@
 }
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   font-size: .9rem;
   background-color: $black;
   overflow: hidden;
+
+  transition: .3s top;
 
   @media screen and (min-width: 576px) {
     font-size: .95rem;
@@ -255,7 +262,11 @@
 
 /* logo */
 .header__logoLink {
+  display: block;
   margin-right: auto;
+  transition-property: transform, margin-right;
+  transition-duration: .3s; 
+  transform-origin: left center;
 
   @media screen and (min-width: 340px) {
     margin-left: .3rem;
@@ -263,15 +274,16 @@
 
   @media screen and (min-width: 1200px) {
     margin-right: 1rem;
+
+    &.large {
+      transform: translateY(-1rem) scale(1.5);
+      margin-right: 2.8rem;
+    }
   }
 }
 
 .header__logo {
   width: 3rem;
-
-  @media screen and (min-width: 1200px) {
-    transform: translate(-.8rem, -1rem) scale(1.5);
-  }
 }
 
 /* desktop categories nav */
@@ -306,7 +318,7 @@
 
 /* search form */
 .header__searchForm {
-  width: 8rem;
+  width: 7.5rem;
 }
 
 /* cart */
