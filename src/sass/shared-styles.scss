@@ -13,3 +13,34 @@
 button {
   cursor: pointer;
 }
+
+.btn-3d {
+  font-size: .9rem;
+  text-transform: uppercase;
+  background-color: $black;
+  color: #fff !important;
+  padding: .7rem 1rem;
+  position: relative;
+  transition: transform .15s;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+
+    &::after {
+      transform: translate(0);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 1px solid $black;
+    transform: translate(2px, 2px);
+    transition: transform .15s;
+  }
+}
