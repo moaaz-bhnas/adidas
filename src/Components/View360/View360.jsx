@@ -20,7 +20,7 @@ const View360 = () => {
             Learn more <i className="fas fa-arrow-right ml-4"></i>
           </a>
         </div>
-      </div>
+      </div>{/* text */}
       <div className="view360__media">
         <div 
           className="view360__blurredShop"
@@ -29,7 +29,14 @@ const View360 = () => {
         <div className="view360__panoramaContainer">
           <img src={shop} alt="Shop" className="view360__panoramaImg"/>
         </div>
-      </div>
+      </div>{/* media */}
+      <div className="view360__saleContainer">
+        <div className="container">
+          <p className="view360__saleParagraph">
+            <span className="text-uppercase">End of season sale</span>. Save up to 50% with new markdowns on select shoes, apparel and accessories. <span className="text-uppercase font-weight-bold">Shop now</span>.
+          </p>
+        </div>
+      </div>{/* view 360 */}
     </section>
   );
 }
