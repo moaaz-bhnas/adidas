@@ -1,0 +1,29 @@
+.view360 {
+  display: flex;
+}
+
+/* --- text */
+.view360__text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.view360__textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* description */
+.view360__description {
+  font-weight: 500;
+  margin-bottom: 1.4rem;
+}
+
+/* button */
+.view360__btn-3d:first-of-type {
+  margin-bottom: .8rem;
+}

@@ -15,7 +15,6 @@ const Menu = (props) => {
   const [ sidebarVisible, setSidebarVisible ] = useState(false);
   const [ dropcartVisible, setDropcartVisible ] = useState(false);
   const [ searchQuery, setSearchQuery ] = useState('');
-  // const [ topBarState, setTopBarState ] = useState({hidden: false, prevScrollPos: window.pageYOffset})
   const [ scrollPos, setScrollPos ] = useState({ prev: null, current: window.pageYOffset });
   const [ topBarHidden, setTopBarHidden ] = useState(false);
 
@@ -24,6 +23,10 @@ const Menu = (props) => {
   const sidebarTogglerRef = useRef();
   const headerRef         = useRef();
   const topBarRef         = useRef();
+
+  /* DOM elements lengths */
+  const headerHeight = headerRef.current && headerRef.current.clientHeight;
+  const topBarHeight = topBarRef.current && topBarRef.current.clientHeight;
 
   const openSidebar = useCallback(() => {
     setSidebarVisible(true);
@@ -50,12 +53,12 @@ const Menu = (props) => {
     props.history.push('./search');
   }, []);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const currentScrollPos = topBarHidden ? (window.pageYOffset + topBarHeight) : window.pageYOffset;
-    console.log('handle scroll', 'prev: ' + scrollPos.current, 'curr: ' + currentScrollPos);
+    console.log('handle scroll', 'prev: ' + scrollPos.current, 'curr: ' + currentScrollPos, 'hidden: ' + topBarHidden);
     console.log(scrollPos);
     setScrollPos({ prev: scrollPos.current, current: currentScrollPos });
-  };
+  }, [topBarHidden, topBarHeight, scrollPos.current]);
   
   useEffect(function addScrollHandler() {
     window.addEventListener('scroll', handleScroll);
@@ -67,12 +70,14 @@ const Menu = (props) => {
   useEffect(function determineToBarVisibility() {
     const { prev, current } = scrollPos;
     const down = (prev !== null) && current > prev;
-    console.log('prev: ' + prev, 'current: ' + current, 'hidden: ' + down);
-    setTopBarHidden(down);
+    console.log('after updating the state: ', 'prev: ' + prev, 'current: ' + current, 'hidden: ' + down);
+    console.log('-------------');
+    if (down !== topBarHidden) {
+      // To stop "handleScroll" until the "topBarHidden" state gets updated  
+      window.removeEventListener('scroll', handleScroll);
+      setTopBarHidden(down);
+    }
   }, [scrollPos.current]);
-
-  const headerHeight = headerRef.current && headerRef.current.clientHeight;
-  const topBarHeight = topBarRef.current && topBarRef.current.clientHeight;
 
   return (
     <>
