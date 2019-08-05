@@ -1,6 +1,9 @@
 import React, { memo } from 'react';
 import './View360.scss';
 
+const blurredShop = '/img/blurred-shop.png';
+const shop        = '/img/shop.png';
+
 const View360 = () => {
   return (
     <section className="view360">
@@ -18,7 +21,15 @@ const View360 = () => {
           </a>
         </div>
       </div>
-      <div className="view360__media"></div>
+      <div className="view360__media">
+        <div 
+          className="view360__blurredShop"
+          style={{ backgroundImage: `url(${blurredShop})` }}
+        ></div>
+        <div className="view360__panoramaContainer">
+          <img src={shop} alt="Shop" className="view360__panoramaImg"/>
+        </div>
+      </div>
     </section>
   );
 }
