@@ -1,6 +1,13 @@
 .edition {
   height: 24rem;
-  margin-bottom: 1.5rem;
+
+  &:first-child {
+    margin-bottom: 1.5rem;
+
+    @media screen and (min-width: 576px) {
+      margin-bottom: 0;
+    }
+  }
 }
 
 /* edition container */
