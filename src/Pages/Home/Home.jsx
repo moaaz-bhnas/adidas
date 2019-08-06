@@ -5,6 +5,7 @@ import Categories from '../../Components/Categories/Categories';
 import Editions from '../../Components/Editions/Editions';
 import BottomBanner from '../../Components/BottomBanner/BottomBanner';
 import Trending from '../../Components/Trending/Trending';
+import Contact from '../../Components/Contact/Contact';
 
 const products = [
   { id: 0, name: 'Lite Racer RBN Shoes', category: 'Essentials', price: { old: 1350, new: 1550 }, img: '/img/trending-1.png' },
@@ -24,6 +25,7 @@ class Home extends PureComponent {
         <Editions />
         <BottomBanner />
         <Trending products={products} />
+        <Contact />
       </main>
     );
   }

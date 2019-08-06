@@ -1,0 +1,62 @@
+@import '../../sass/colors';
+
+.contact {
+  background-color: #EDE733;
+  padding: 1.8rem 0;
+
+  .container {
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+/* title */
+.contact__title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: bold;
+  max-width: 22rem;
+  margin-bottom: 1.3rem;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.7rem;
+    margin-bottom: 0;
+    margin-right: 5rem;
+  }
+}
+
+/* form */
+.contact__form {
+  display: flex;
+}
+
+/* input */
+.contact__input {
+  border: none;
+  padding-left: 1rem;
+  transition: box-shadow .15s ease-in-out;
+  border-radius: .1rem 0 0 .1rem;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+}
+
+/* button */
+.contact__btn {
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0 .1rem .1rem 0;
+  background-color: $black;
+  color: #fff;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+}
