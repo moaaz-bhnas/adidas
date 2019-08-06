@@ -1,0 +1,41 @@
+@import '../../sass/colors';
+
+.footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* footer list */
+.footer__list {
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* column */
+.footer__col {
+  width: 100%;
+  margin-bottom: 1.5rem;
+
+  @media screen and (min-width: 400px) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 33.3333%;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 20%;
+  }
+}
+
+/* column list */
+.footerCol__list {
+  padding-left: 0;
+}
+
+/* column link */
+.footerCol__link {
+  color: $black !important;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Menu from './Components/Menu/Menu';
 import Home from './Pages/Home/Home';
+import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <div className="App">
         <Menu />
         <Route path="/" exact component={Home} />
+        <Footer />
       </div>
     </Router>
   );
