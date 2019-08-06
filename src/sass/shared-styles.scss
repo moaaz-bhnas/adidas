@@ -17,8 +17,6 @@ button {
 .btn-3d {
   font-size: .9rem;
   text-transform: uppercase;
-  background-color: $black;
-  color: #fff !important;
   padding: .7rem 1rem;
   position: relative;
   transition: transform .15s;
@@ -39,9 +37,26 @@ button {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    border: 1px solid $black;
+    border: 1px solid;
     transform: translate(2px, 2px);
     transition: transform .15s;
+  }
+}
+// modifiers
+.btn-3d_theme_black {
+  color: #fff !important;
+  background-color: $black;
+
+  &::after {
+    border-color: $black;
+  }
+}
+.btn-3d_theme_white {
+  color: $black !important;
+  background-color: #fff;
+
+  &::after {
+    border-color: #fff;
   }
 }
 

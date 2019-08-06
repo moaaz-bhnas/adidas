@@ -15,7 +15,7 @@ const TopBanner = () => {
         <img src={logo} alt="Adidas logo" className="banner__logo"/>
         <h3 className="featuredProduct1__name">{product.name}</h3>
         <p className="featuredProduct1__description">{product.description}</p>
-        <a href="#" className="btn-3d">
+        <a href="#" className="btn-3d btn-3d_theme_black">
           Shop now <i className="fa fa-arrow-right ml-4"></i>
         </a>
       </div>

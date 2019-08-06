@@ -1,0 +1,25 @@
+.edition {
+  height: 24rem;
+  margin-bottom: 1.5rem;
+}
+
+/* edition container */
+.edition__container {
+  height: 100%;
+  padding: 1rem;
+
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* title */
+.edition__title {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}

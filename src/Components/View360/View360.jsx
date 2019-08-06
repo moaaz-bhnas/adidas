@@ -13,10 +13,10 @@ const View360 = () => {
           <p className="view360__description">
             360-Degree shopping experience
           </p>
-          <a href="#" className="btn-3d view360__btn-3d">
+          <a href="#" className="btn-3d btn-3d_theme_black view360__btn-3d">
             Shop now <i className="fas fa-arrow-right ml-4"></i>
           </a>
-          <a href="#" className="btn-3d">
+          <a href="#" className="btn-3d btn-3d_theme_black">
             Learn more <i className="fas fa-arrow-right ml-4"></i>
           </a>
         </div>
