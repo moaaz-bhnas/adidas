@@ -6,7 +6,7 @@ import Footer from './Components/Footer/Footer';
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Menu />
         <Route path="/" exact component={Home} />

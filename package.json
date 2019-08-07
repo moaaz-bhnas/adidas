@@ -2,7 +2,7 @@
   "name": "adidas",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://username.github.io/adidas",
+  "homepage": "http://moaaz-bhnas.github.io/adidas",
   "dependencies": {
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
