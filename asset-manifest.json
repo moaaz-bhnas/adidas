@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/adidas/static/css/main.bd50cd26.chunk.css",
+    "main.js": "/adidas/static/js/main.a6a0663d.chunk.js",
+    "main.js.map": "/adidas/static/js/main.a6a0663d.chunk.js.map",
+    "runtime~main.js": "/adidas/static/js/runtime~main.46dd9c9f.js",
+    "runtime~main.js.map": "/adidas/static/js/runtime~main.46dd9c9f.js.map",
+    "static/css/2.d72df4ce.chunk.css": "/adidas/static/css/2.d72df4ce.chunk.css",
+    "static/js/2.261cff38.chunk.js": "/adidas/static/js/2.261cff38.chunk.js",
+    "static/js/2.261cff38.chunk.js.map": "/adidas/static/js/2.261cff38.chunk.js.map",
+    "index.html": "/adidas/index.html",
+    "precache-manifest.6e7838b4cf65eb1b66e3bc56eb0b0963.js": "/adidas/precache-manifest.6e7838b4cf65eb1b66e3bc56eb0b0963.js",
+    "service-worker.js": "/adidas/service-worker.js",
+    "static/css/2.d72df4ce.chunk.css.map": "/adidas/static/css/2.d72df4ce.chunk.css.map",
+    "static/css/main.bd50cd26.chunk.css.map": "/adidas/static/css/main.bd50cd26.chunk.css.map",
+    "static/media/slick-theme.css": "/adidas/static/media/slick.f97e3bbf.svg"
+  }
+}
