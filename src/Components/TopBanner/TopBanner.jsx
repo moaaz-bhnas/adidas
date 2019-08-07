@@ -1,11 +1,12 @@
 import React, { memo } from 'react';
 import './TopBanner.scss';
+import topBanner from '../../img/banner.png';
+import logo from '../../img/logo.png';
 
-const logo = '/img/logo.png';
 const product = {
   name: 'Ozweego',
   description: 'Future-focused attitude with adiPRENE technology for maximum comfort.',
-  cover_img_url: '/img/banner.png'
+  cover_img_url: topBanner
 }
 
 const TopBanner = () => {

@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
 import './Footer.scss';
+import reLogo from '../../img/re-sports.png';
+import nasorg from '../../img/nasorg-logo.png';
 
 const footerList = [
   { title: 'Customer Support', items: ['Help', 'Track Orders', 'Returns & Refunds', 'Sizing', 'Offers', 'How to take Care', 'Store', '360'] },
@@ -8,9 +10,6 @@ const footerList = [
   { title: 'Privacy & Terms', items: ['Privacy Policy', 'Terms & Conditions', 'Statements'] },
   { title: 'About RA Sports', items: ['About', 'Careers', 'Partenrs'] }
 ];
-
-const reLogo = '/img/re-sports.png';
-const nasorg = '/img/nasorg-logo.png';
 
 const Footer = () => {
   return (

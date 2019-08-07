@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
 import EditionTemplate from './EditionTemplate';
 import './Editions.scss';
+import edition1 from '../../img/supercourt.png';
+import edition2 from '../../img/toy-story.png';
 
 const editions = [
-  { id: 0, name: 'Supercourt', cover: '/img/supercourt.png' },
-  { id: 1, name: 'Toy Story',  cover: '/img/toy-story.png' }
+  { id: 0, name: 'Supercourt', cover: edition1 },
+  { id: 1, name: 'Toy Story',  cover: edition2 }
 ];
 
 const Editions = () => {

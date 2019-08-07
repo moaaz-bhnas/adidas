@@ -2,11 +2,11 @@ import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import './Menu.scss';
 import CategoriesSidebar from './CategoriesSidebar';
+import egyptFlag from '../../img/egypt-flag.png';
+import usFlag from '../../img/us-flag.png';
+import logo from '../../img/logo.png';
 
 const secondaryList = ['Help', 'Track Order', 'Newsletter'];
-const egyptFlag = '/img/egypt-flag.png';
-const usFlag = '/img/us-flag.png';
-const logo = '/img/logo.png';
 const categories = ['New Arrivals', 'Men', 'Women', 'Kids', 'By Sports', 'Brands', '360'];
 const cartEntriesNum = 7;
 

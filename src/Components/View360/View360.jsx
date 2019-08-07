@@ -1,8 +1,7 @@
 import React, { memo } from 'react';
 import './View360.scss';
-
-const blurredShop = '/img/blurred-shop.png';
-const shop        = '/img/shop.png';
+import blurredShop from '../../img/blurred-shop.png';
+import shop from '../../img/shop.png';
 
 const View360 = () => {
   return (
