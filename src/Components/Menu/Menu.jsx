@@ -55,8 +55,6 @@ const Menu = (props) => {
 
   const handleScroll = useCallback(() => {
     const currentScrollPos = topBarHidden ? (window.pageYOffset + topBarHeight) : window.pageYOffset;
-    console.log('handle scroll', 'prev: ' + scrollPos.current, 'curr: ' + currentScrollPos, 'hidden: ' + topBarHidden);
-    console.log(scrollPos);
     setScrollPos({ prev: scrollPos.current, current: currentScrollPos });
   }, [topBarHidden, topBarHeight, scrollPos.current]);
   
@@ -70,8 +68,6 @@ const Menu = (props) => {
   useEffect(function determineToBarVisibility() {
     const { prev, current } = scrollPos;
     const down = (prev !== null) && current > prev;
-    console.log('after updating the state: ', 'prev: ' + prev, 'current: ' + current, 'hidden: ' + down);
-    console.log('-------------');
     if (down !== topBarHidden) {
       // To stop "handleScroll" until the "topBarHidden" state gets updated  
       window.removeEventListener('scroll', handleScroll);
@@ -219,7 +215,7 @@ const Menu = (props) => {
         style={{
           height: headerRef.current ? 
                     topBarHidden ? `${headerHeight - topBarHeight}px` 
-                                       : `${headerHeight}px`
+                                 : `${headerHeight}px`
                   : '5.5rem'
         }} 
       />
