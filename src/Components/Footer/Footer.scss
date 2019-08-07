@@ -2,7 +2,13 @@
 
 .footer {
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  position: relative;
+}
+
+/* footer nav */
+.footer__nav {
+  display: flex;
+  flex-direction: column;
 }
 
 /* footer list */
@@ -38,4 +44,40 @@
 /* column link */
 .footerCol__link {
   color: $black !important;
+}
+
+/* RE Logo */
+.footer__reLogo {
+  align-self: flex-end;
+  right: 0;
+  width: 10rem;
+}
+
+/* copy right */
+.footer__copyRightRibbon {
+  padding: 1rem 0;
+  background-color: #363738;
+  color: #fff;
+  text-align: center;
+
+  .container {
+    @media screen and (min-width: 576px) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+.footer__cr {
+  @media screen and (min-width: 576px) {
+    margin-bottom: 0;
+  }
+}
+
+.footer__powered {
+  margin-bottom: 0;
+}
+
+.footer__nasorgLogo {
+  width: 6rem;
 }
