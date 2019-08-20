@@ -3,23 +3,36 @@ import './ProductTemplate.scss';
 import LinesEllipsis from 'react-lines-ellipsis';
 
 const ProductTemplate = (props) => {
-  const { product } = props; 
-  const { price } = product;
+  const { product } = props;
+  const price = product.discount 
+  ? product.price - (product.price * 25 / 100)
+  : product.price;
+                                  
 
   return (
     <div className="product">
       <div className="product__imgContainer">
         <img src={product.img} alt="" className="product__img"/>
       </div>
-      <p className="product__category">{product.category}</p>
+      <p className="product__sport">{product.sport}</p>
       <h3 className="product__name">{product.name}</h3>
       <p className="productPrices">
-        <span className="productPrices__new" style={{ color: price.old ? '#FF0101' : null }}>EGP {price.new}</span>
+        <span className={`productPrices__new${product.discount ? ' sale' : ''}`}>EGP {price}</span>
         {
-          price.old &&
-          <s className="productPrices__old">EGP {price.old}</s>
+          product.discount &&
+          <s className="productPrices__old">EGP {product.price}</s>
         }
       </p>
+      <div className="product__badges">
+        {
+          product.new &&
+          <p className="product__badge product__badge_new">new</p>
+        }
+        {
+          product.discount &&
+          <p className="product__badge product__badge_sale">sale</p>
+        }
+      </div>{/* badges */}
     </div>
   );
 }

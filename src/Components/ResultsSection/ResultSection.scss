@@ -1,0 +1,45 @@
+@import '../../sass/colors';
+
+/* title */
+.result__title {
+  text-transform: uppercase;
+  margin-bottom: 0;
+  line-height: 1;
+  font-size: 1.8rem;
+  margin-right: 1rem;
+}
+
+/* results number */
+.result__num {
+  margin-bottom: 0;
+}
+
+/* --- Filteration bar */
+.filteration {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* clear btn */
+.filteration__clearBtn {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  height: 2.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover,
+  &:focus {
+    color: $primary-color;
+  }
+}
+
+/* sort by */
+.filteration__sortBy {
+  width: auto !important;
+  margin: .5rem 0 .5rem auto;
+}

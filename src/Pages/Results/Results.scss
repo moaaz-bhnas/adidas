@@ -1,0 +1,15 @@
+@import '../../sass/colors';
+
+.resultsPage {
+  font-size: 1rem;
+  color: $black;
+
+  /* thriller */
+  .thriller {
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: .7rem 0 1rem;
+  }
+}

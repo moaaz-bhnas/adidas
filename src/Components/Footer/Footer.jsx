@@ -27,8 +27,8 @@ const Footer = () => {
                   </h3>
                   <ul className="list footerCol__list">
                     {
-                      footerCol.items.map((item) => (
-                        <li className="footerCol__item">
+                      footerCol.items.map((item, index) => (
+                        <li className="footerCol__item" key={index}>
                           <a className="footerCol__link" href="#">{item}</a>
                         </li>
                       ))

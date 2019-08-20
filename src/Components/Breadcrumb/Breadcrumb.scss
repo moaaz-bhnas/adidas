@@ -1,0 +1,50 @@
+@import '../../sass/colors';
+
+.breadcrumbBar {
+  margin-bottom: 3.2rem;
+
+  .container {
+    display: flex;
+  }
+}
+
+/* back link */
+.breadcrumbBar__backLink {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: inherit !important;
+  text-decoration: none !important;
+  margin-right: 1.5rem;
+
+  &:hover,
+  &:focus {
+    color: $primary-color !important;
+  }
+}
+
+/* list */
+.breadcrumbList {
+  padding-left: 0;
+  display: flex;
+  margin-bottom: 0;
+  align-self: flex-end;
+}
+
+.breadcrumbBar__item:not(:last-child) {
+  padding-right: .4rem;
+
+  &::after {
+    content: '/';
+    padding-left: .4rem;
+  }
+}
+
+.breadcrumbBar__link {
+  color: inherit !important;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    color: $primary-color !important;
+  }
+}

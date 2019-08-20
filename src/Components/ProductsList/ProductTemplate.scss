@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   height: 21.37375rem;
+
+  position: relative;
 }
 
 /* img */
@@ -21,7 +23,7 @@
 }
 
 /* category */
-.product__category {
+.product__sport {
   text-transform: uppercase;
   color: #555;
   margin-bottom: .6rem;
@@ -53,8 +55,34 @@
 
 .productPrices__new {
   margin-right: 1rem;
+
+  &.sale {
+    color: $primary-color;
+  }
 }
 
 .productPrices__old {
   color: #555;
+}
+
+/* badges */
+.product__badges {
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+}
+
+.product__badge {
+  text-transform: uppercase;
+  padding: .2rem .6rem;
+}
+
+.product__badge_new {
+  background-color: #A8DCB2;
+  color: $black;
+}
+
+.product__badge_sale {
+  background-color: #DA4444;
+  color: #fff;
 }
