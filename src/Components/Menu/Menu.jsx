@@ -8,7 +8,12 @@ import logo from '../../img/logo.png';
 
 const secondaryList = ['Help', 'Track Order', 'Newsletter'];
 const categories = ['New Arrivals', 'Men', 'Women', 'Kids', 'By Sports', 'Brands', '360'];
-const cartEntriesNum = 7;
+const cart = {
+  entries: [
+    { id: 0 },
+    { id: 1 }
+  ]
+}
 
 const Menu = (props) => {
   /* state */
@@ -204,7 +209,7 @@ const Menu = (props) => {
             >
               <i className="fas fa-shopping-cart fa-lg" aria-hidden="true" />
               <span className="header__cartBadge">
-                {cartEntriesNum}
+                {cart && cart.entries ? cart.entries.length : "0"}
               </span>
             </button>
           </div> {/* main bar */}
