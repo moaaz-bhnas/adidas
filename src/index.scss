@@ -7,6 +7,6 @@ html[data-scrollbar="false"] {
   }
 }
 
-body {
-  // padding-bottom: 2rem;
+body[data-scroll="false"] {
+  overflow: hidden;
 }

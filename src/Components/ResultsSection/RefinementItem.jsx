@@ -1,12 +1,15 @@
 import React, { useState, useCallback } from 'react'
 import './RefinementItem.scss';
+import PriceRange from '../../Controls/PriceRange/PriceRange';
+import OptionsList from './OptionsList';
 
 const RefinementItem = (props) => {
-  const [ optionsVisible, setOptionsVisible ] = useState(false);
+  /* options list visibility */
+  const [ optionsVisible, setOptionsVisible ] = useState(true);
 
-  const toggleOptionsList = useCallback(() => {
+  const toggleOptions = useCallback(() => {
     setOptionsVisible(!optionsVisible);
-  });
+  }, [optionsVisible]);
 
   const { item } = props;
   return (
@@ -16,8 +19,8 @@ const RefinementItem = (props) => {
           className="refinement__nameBtn"
           aria-expanded={optionsVisible}
           aria-pressed={optionsVisible}
-          aria-controls={optionsVisible ? 'refinement__options' : null}
-          onClick={toggleOptionsList}
+          aria-controls="refinement__options"
+          onClick={toggleOptions}
           onMouseDown={(e) => e.preventDefault()}
         >
           {item.name} <i className="fas fa-chevron-down" />
@@ -25,16 +28,9 @@ const RefinementItem = (props) => {
       </h4>
 
       {
-        optionsVisible &&
-        <ul className="list refinement__options" id="refinement__options">
-          {
-            item.options.map((option, index) => (
-              <li className="refinment__option" key={index}>
-                <button className="refinement__optionBtn">{`${option} [1]`}</button>
-              </li>
-            ))
-          }
-        </ul>
+        item.name === 'price' ?
+        <PriceRange visible={optionsVisible} item={item} /> :
+        <OptionsList visible={optionsVisible} item={item} />
       }
     </li>
   );

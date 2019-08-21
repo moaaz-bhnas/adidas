@@ -1,0 +1,17 @@
+.priceRange {
+  overflow: hidden;
+
+  &[data-visible="false"] {
+    height: 0;
+  }
+}
+
+/* input */
+.priceRange__inputContainer {
+  padding: .5rem 0;
+}
+
+/* label */
+.priceRange__label {
+  margin-bottom: .1rem;
+}

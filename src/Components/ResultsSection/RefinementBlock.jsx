@@ -3,16 +3,16 @@ import RefinementItem from './RefinementItem';
 import './RefinementBlock.scss';
 
 const refinementItems = [
-  { name: 'Gender', options: ['men', 'kids'] },
-  { name: 'Category', options: ['Clothing', 'Shoes'] },
-  { name: 'price', options: [100, 200] },
+  { name: 'gender', options: ['men', 'kids'] },
+  { name: 'category', options: ['Clothing', 'Shoes'] },
+  { name: 'price', range: { min: 150, max: 350 } },
   { name: 'Product type', options: ['Shirts', 'Shoes'] },
-  { name: 'Sport', options: ['Football', 'Running'] },
-  { name: 'Size', options: ['s', 'm'] },
-  { name: 'Brand', options: ['Badge of Sports', 'Originals'] }
+  { name: 'sport', options: ['Football', 'Running'] },
+  { name: 'size', options: ['s', 'm'] },
+  { name: 'brand', options: ['Badge of Sports', 'Originals'] }
 ];
 
-const RefinementBlock = () => {
+const RefinementBlock = (props) => {
   return (
     <div className="refinement">
       <h3 className="refinement__title">Refine</h3>

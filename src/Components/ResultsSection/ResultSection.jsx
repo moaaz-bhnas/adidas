@@ -6,45 +6,6 @@ import Pagination from './Pagination';
 import RefinementBlock from './RefinementBlock';
 import RefinementModal from './RefinementModal';
 
-/**
- * Needs to be moved to a util level
- */
-var keys = {37: 1, 38: 1, 39: 1, 40: 1};
-
-const preventDefault = (e) => {
-  e = e || window.event;
-  if (e.preventDefault)
-    e.preventDefault();
-  e.returnValue = false;  
-}
-
-const preventDefaultForScrollKeys = (e) => {
-  if (keys[e.keyCode]) {
-    preventDefault(e);
-    return false;
-  }
-}
-
-const disableScroll = () => {
-  if (window.addEventListener) // older FF
-    window.addEventListener('DOMMouseScroll', preventDefault, false);
-  document.addEventListener('wheel', preventDefault, {passive: false}); // Disable scrolling in Chrome
-  window.onwheel = preventDefault; // modern standard
-  window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-  window.ontouchmove  = preventDefault; // mobile
-  document.onkeydown  = preventDefaultForScrollKeys;
-}
-
-const enableScroll = () => {
-  if (window.removeEventListener)
-      window.removeEventListener('DOMMouseScroll', preventDefault, false);
-  document.removeEventListener('wheel', preventDefault, {passive: false}); // Enable scrolling in Chrome
-  window.onmousewheel = document.onmousewheel = null; 
-  window.onwheel = null; 
-  window.ontouchmove = null;  
-  document.onkeydown = null;  
-}
-
 const filters = ['Apparel', 'Men', 'Jerseys'];
 
 const Result = (props) => {
@@ -54,20 +15,14 @@ const Result = (props) => {
     setRefinementModalVisible(true);
 
     // prevent scroll
-    disableScroll();
-    document.documentElement.setAttribute('data-scrollbar', 'false');
+    document.body.setAttribute('data-scroll', 'false');
   }, []);
 
   const closeRefinementModal = useCallback((event) => {
-    const clickIsOnOverlay = event.target.className === 'refinementModalBackground';
+    setRefinementModalVisible(false);
 
-    if (clickIsOnOverlay) {
-      setRefinementModalVisible(false);
-
-      // allow scroll
-      enableScroll();
-      document.documentElement.setAttribute('data-scrollbar', 'true');
-    }
+    // allow scroll
+    document.body.setAttribute('data-scroll', 'true');
   }, []);
 
   const { query, products } = props;

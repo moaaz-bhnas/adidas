@@ -1,0 +1,30 @@
+@import '../../sass/colors';
+
+/* options */
+.refinement__options {
+  margin: 0;
+  padding-left: .1rem;
+  overflow: hidden;
+
+  &[data-visible="false"] {
+    height: 0;
+  }
+}
+
+.refinment__option {
+  text-transform: capitalize;
+}
+
+.refinement__optionBtn {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  padding: .5rem 0;
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: $primary-color;
+  }
+}

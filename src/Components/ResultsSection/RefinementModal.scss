@@ -1,3 +1,5 @@
+@import '../../sass/colors';
+
 .refinementModalBackground {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -6,13 +8,41 @@
   background-color: rgba($color: #000000, $alpha: .75);
 
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2rem;
+    flex-shrink: 0;
+  }
 }
 
 .refinementModal {
   background-color: #fff;
-  padding: 2rem;
-  width: 20rem;
+  padding: 3rem 2rem 2rem;
+  width: 22rem;
   border-radius: .25rem;
+  margin: auto;
+  position: relative;
+}
+
+/* close btn */
+.refinementModal__closeBtn {
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  width: 3rem;
+  height: 3rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1.3rem;
+  transition: color .15s;
+
+  &:hover,
+  &:focus {
+    color: $primary-color;
+  }
 }

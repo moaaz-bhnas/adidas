@@ -8,7 +8,7 @@ import Result from '../../Components/ResultsSection/ResultSection';
 
 const query = 'Apparel';
 const products = [
-  { id: 0, name: 'Arsenal Away Jersey', gender: 'men', category: 'Clothing', price: '350', type: 'Shirts', sport: 'Football', size: 's', brand: 'Badge of Sports', new: true, img: product1, preview_imgs: Array(3).fill(product1) },
+  { id: 0, name: 'Arsenal Away Jersey', gender: 'men', category: 'Clothing', price: '150', type: 'Shirts', sport: 'Football', size: 's', brand: 'Badge of Sports', new: true, img: product1, preview_imgs: Array(3).fill(product1) },
   { id: 1, name: 'Ultraboost Uncaged Shoes', gender: 'kids', category: 'Shoes', price: '350', discount: 25, type: 'Shoes', sport: 'Running', size: 'm', brand: 'Originals', img: product2, preview_imgs: Array(3).fill(product2) }
 ];
 
