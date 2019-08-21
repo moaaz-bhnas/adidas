@@ -1,6 +1,6 @@
 @import '../../sass/colors';
 
-.resultsPage {
+.productPage {
   font-size: 1rem;
   color: $black;
 
@@ -29,6 +29,8 @@
     color: inherit !important;
     text-decoration: none !important;
     margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
   
     &:hover,
     &:focus {

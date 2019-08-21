@@ -4,6 +4,7 @@ import Menu from './Components/Menu/Menu';
 import Home from './Pages/Home/Home';
 import Footer from './Components/Footer/Footer';
 import Results from './Pages/Results/Results';
+import SingleProduct from './Pages/SingleProduct/SingleProduct';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Menu />
         <Route path="/" exact component={Home} />
         <Route path="/search" component={Results} />
+        <Route path="/product" component={SingleProduct} />
         <Footer />
       </div>
     </Router>

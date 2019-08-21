@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import './ProductTemplate.scss';
-import LinesEllipsis from 'react-lines-ellipsis';
+import { Link } from "react-router-dom";
 
 const ProductTemplate = (props) => {
   const { product } = props;
@@ -11,11 +11,11 @@ const ProductTemplate = (props) => {
 
   return (
     <div className="product">
-      <button className="product__btn">
+      <Link to="/product" className="product__btn">
         <div className="product__imgContainer">
           <img src={product.img} alt="" className="product__img"/>
         </div>
-      </button>
+      </Link>
       <p className="product__sport">{product.sport}</p>
       <h3 className="product__name">{product.name}</h3>
       <p className="productPrices">

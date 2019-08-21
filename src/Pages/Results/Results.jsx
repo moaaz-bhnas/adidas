@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import './Results.scss';
-import Breadcrumb from '../../Components/Breadcrumb/Breadcrumb';
 import product1 from '../../img/category-1.png';
 import product2 from '../../img/category-2.png';
 import Result from '../../Components/ResultsSection/ResultSection';
@@ -23,11 +22,30 @@ class Results extends Component {
   render() {
     return (
       <main className="resultsPage">
+        {/* Thriller */}
         <p className="thriller">
           <i aria-hidden="true" className="fas fa-truck" /> Free shippings and free returns
         </p>
 
-        <Breadcrumb query={query} goBack={this.goBack} />
+        {/* Breadcrumb */}
+        <nav className="breadcrumbBar" aria-label="Breadcrumb">
+          <div className="container">
+            <a 
+              href="#" 
+              className="breadcrumbBar__backLink"
+              onClick={this.goBack}
+            > 
+              <i className="fas fa-arrow-left" aria-hidden="true" /> <span className="text-underline ml-2">Back</span>
+            </a>
+
+            <ol className="list breadcrumbList">
+              <li className="breadcrumbBar__item">
+                <Link className="breadcrumbBar__link" to="/">Home</Link>
+              </li>
+              <li className="breadcrumbBar__item" aria-current="page">{query}</li>
+            </ol>
+          </div>
+        </nav>
 
         <Result products={products} query={query} />
       </main>
