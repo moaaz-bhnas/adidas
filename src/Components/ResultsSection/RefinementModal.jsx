@@ -1,11 +1,12 @@
-import React, { useRef, useEffect, useCallback } from 'react'
+import React, { useRef, useEffect, useCallback, forwardRef } from 'react'
 import RefinementBlock from './RefinementBlock';
 import './RefinementModal.scss';
 
-const RefinementModal = (props) => {
+const RefinementModal = forwardRef((props, togglerRef) => {
   const { closeModal } = props;
   const closeBtnRef = useRef();
   let lastOption;
+  console.log(togglerRef);
 
   useEffect(function setLastOption() {
     const options = document.querySelectorAll('.refinement__optionBtn');
@@ -14,6 +15,10 @@ const RefinementModal = (props) => {
 
   useEffect(function focusFirstWidget() {
     closeBtnRef.current.focus();
+
+    return function focusToggler() {
+      togglerRef.current.focus();
+    }
   }, []);
 
   const _closeModal = useCallback((event) => {
@@ -63,6 +68,6 @@ const RefinementModal = (props) => {
       </div>
     </div>
   );
-}
+})
 
 export default RefinementModal;

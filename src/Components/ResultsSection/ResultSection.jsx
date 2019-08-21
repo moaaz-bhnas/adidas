@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import Filters from './Filters';
 import './ResultSection.scss';
 import ProductsGrid from '../ProductsGrid/ProductsGrid';
@@ -24,6 +24,8 @@ const Result = (props) => {
     // allow scroll
     document.body.setAttribute('data-scroll', 'true');
   }, []);
+
+  const modalToggler = useRef();
 
   const { query, products } = props;
   const pagesNum = Math.ceil(products.length / 28);
@@ -68,13 +70,14 @@ const Result = (props) => {
           aria-controls={refinementModalVisible ? 'refinementModal' : null}
           aria-label="Toggle refinement modal"
           onClick={openRefinementModal}
+          ref={modalToggler}
         >
           <i className="fas fa-filter" aria-hidden="true" />
         </button>
 
         {
           refinementModalVisible &&
-          <RefinementModal closeModal={closeRefinementModal} />
+          <RefinementModal closeModal={closeRefinementModal} ref={modalToggler} />
         }
       </div>
     </section>
