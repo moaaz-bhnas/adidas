@@ -11,9 +11,11 @@ const ProductTemplate = (props) => {
 
   return (
     <div className="product">
-      <div className="product__imgContainer">
-        <img src={product.img} alt="" className="product__img"/>
-      </div>
+      <button className="product__btn">
+        <div className="product__imgContainer">
+          <img src={product.img} alt="" className="product__img"/>
+        </div>
+      </button>
       <p className="product__sport">{product.sport}</p>
       <h3 className="product__name">{product.name}</h3>
       <p className="productPrices">

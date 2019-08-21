@@ -2,6 +2,9 @@ import React, { memo, useEffect, useRef, forwardRef, useCallback } from 'react';
 import { Link } from "react-router-dom";
 import './CategoriesSidebar.scss';
 
+/**
+ * Needs to be moved to a util level
+ */
 var keys = {37: 1, 38: 1, 39: 1, 40: 1};
 
 const preventDefault = (e) => {

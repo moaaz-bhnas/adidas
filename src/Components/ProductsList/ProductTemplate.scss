@@ -8,6 +8,13 @@
   position: relative;
 }
 
+.product__btn {
+  display: block;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
 /* img */
 .product__imgContainer {
   padding: 1rem;

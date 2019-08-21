@@ -1,0 +1,43 @@
+@import '../../sass/colors';
+
+.customPagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  margin-top: 2rem;
+}
+
+/* paragraph */
+.pagination__paragraph {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+/* select */
+.pagination__select {
+  width: auto;
+  margin: 0 .4rem;
+}
+
+/* back button */
+.pagination__backBtn {
+  position: absolute;
+  right: 0;
+
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+
+  &:hover,
+  &:focus {
+    color: $primary-color;
+  }
+}
