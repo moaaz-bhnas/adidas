@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://moaaz-bhnas.github.io/adidas",
   "dependencies": {
+    "element-scroll-polyfill": "^1.0.1",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
