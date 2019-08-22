@@ -1,0 +1,52 @@
+@import '../../sass/colors';
+
+/* gallery */
+.gallery {
+  background-color: $grey;
+  height: 30rem;
+
+  position: relative;
+}
+
+/* active img */
+.gallery__activeImg {
+  max-width: 50%;
+  max-height: 100%;
+
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* imgs list */
+.gallery__list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* item */
+.gallery__item {
+  width: 4.5rem;
+  height: 5rem;
+  border: 1px solid #4D4D4D;
+  margin: .5rem 0;
+
+  position: relative;
+}
+
+.gallery__img {
+  max-width: 90%;
+  max-height: 100%;
+  object-fit: cover;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import './SingleProduct.scss';
+import productImg from '../../img/product.png';
+import Gallery from '../../Components/Gallery/Gallery';
 
 const product = {
-  name: 'Ultraboost 19 Shoes'
+  name: 'Ultraboost 19 Shoes',
+  imgs: [
+    productImg,
+    'https://via.placeholder.com/800.png',
+    'https://via.placeholder.com/800x700.png',
+    'https://via.placeholder.com/800x750.png',
+    'https://via.placeholder.com/700x800.png',
+    'https://via.placeholder.com/750x800.png',
+    'https://via.placeholder.com/750.png',
+    'https://via.placeholder.com/700x750.png',
+    'https://via.placeholder.com/810x740.png',
+    'https://via.placeholder.com/820.png'
+  ],
 }
 
 class SingleProduct extends Component {
@@ -36,6 +50,8 @@ class SingleProduct extends Component {
             </ol>
           </div>
         </nav>
+      
+        <Gallery imgs={product.imgs} />
       </main>
     );
   }
