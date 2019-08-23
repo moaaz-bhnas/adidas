@@ -15,19 +15,19 @@
   }
 
   @media screen and (min-width: 1200px) {
-    width: 77%;
-    margin-right: .7rem;
+    flex: 0 0 67%;
     height: initial;
-  }
+    margin-bottom: initial;
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    height: 1.5rem;
-    background-color: $grey;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: .5rem;
+      background-color: $grey;
+    }
   }
 }
 
@@ -46,6 +46,7 @@
 
   @media screen and (min-width: 768px) {
     max-height: 21rem;
+    height: initial;
   }
 
   @media screen and (min-width: 992px) {
@@ -54,7 +55,6 @@
 
   @media screen and (min-width: 1200px) {
     max-height: 32rem;
-    height: initial;
   }
 }
 

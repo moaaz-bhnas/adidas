@@ -6,8 +6,10 @@ import Gallery from '../../Components/Gallery/Gallery';
 import ProductInfo from '../../Components/ProductInfo/ProductInfo';
 import color1 from '../../img/color-1.png';
 import color2 from '../../img/color-2.png';
-// import test1 from '../../img/test.png';
-// import test2 from '../../img/test2.png';
+import coordinate from '../../img/coordinate.png'
+import test1 from '../../img/test.png';
+import test2 from '../../img/test2.png';
+import Coordinates from '../../Components/Coordinates/Coordinates';
 
 const product = {
   name: 'Ultraboost 19 Shoes',
@@ -52,7 +54,12 @@ const product = {
   ],
   sizes: [ 's', 'm' ],
   gender: 'men',
-  sport: 'running'
+  sport: 'running',
+  coordinates: [
+    { img: coordinate, price: 600 },
+    { img: test1, price: 700 },
+    { img: test2, price: 800 }
+  ]
 }
 
 class SingleProduct extends Component {
@@ -96,6 +103,7 @@ class SingleProduct extends Component {
           <div className="galleryAndInfo">
             <Gallery imgs={product.imgs} />
             <ProductInfo product={product} />
+            <Coordinates coordinates={product.coordinates} />
           </div>
         </article>
       </main>

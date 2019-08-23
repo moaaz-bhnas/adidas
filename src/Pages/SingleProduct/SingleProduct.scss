@@ -73,8 +73,13 @@
 
   /* gallery & info */
   .galleryAndInfo {
+    display: flex;
+    flex-direction: column;
+
     @media screen and (min-width: 1200px) {
-      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
   }
 }

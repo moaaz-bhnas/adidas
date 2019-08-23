@@ -1,5 +1,11 @@
 @import '../../sass/colors';
 
+.productInfo {
+  @media screen and (min-width: 1200px) {
+    flex: 0 0 32.3%;
+  }
+}
+
 /* rating */
 .productInfo__rating {
   list-style: none;

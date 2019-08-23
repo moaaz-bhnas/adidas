@@ -1,0 +1,58 @@
+@import '../../sass/colors';
+
+.coordinates {
+  margin-top: 1.3rem;
+  
+  @media screen and (min-width: 1200px) {
+    padding-left: 4rem;
+    margin-top: 2rem;
+  }
+
+  .container {
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+/* title */
+.coordinates__title {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  margin-bottom: .9rem;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 3rem;
+  }
+}
+
+/* list */
+.coordinates__list {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* item */
+.coordinate:not(:last-child) {
+  margin-right: 1rem;
+}
+
+/* img */
+.coordinate__imgContainer {
+  width: 7.5rem;
+  height: 8.5rem;
+  display: flex;
+  margin-bottom: .5rem;
+  background-color: $grey;
+}
+
+.coordinate__img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
