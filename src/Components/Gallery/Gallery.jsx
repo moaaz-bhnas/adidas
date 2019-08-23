@@ -1,15 +1,18 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import 'element-scroll-polyfill';
 import './Gallery.scss';
 
 const Gallery = (props) => {
   const { imgs } = props;
 
-  // active image
+  /* --- items number */
+  const [ itemsNumber, setItemsNumber ] = useState(3);
+
+  /* --- active image */
   const [ activeIndex, setActiveIndex ] = useState(0);
 
-  // arrows visibility
-  const arrowsVisible = imgs.length > 4;
+  /* --- arrows visibility */
+  const arrowsVisible = imgs.length > itemsNumber;
 
   // up arrow visibility
   const galleryList = useRef();
@@ -30,28 +33,92 @@ const Gallery = (props) => {
     setDownArrowVisible(galleryBottomPosition !== lastItemBottomPosition);
   }, []);
 
-  // scroll buttons
-  const [ scrollValue, setScrollValue ] = useState(0);
+  // left arrow visibility
+  const [ leftArrowVisible, setLeftArrowVisible ] = useState(false);
+  const _setLeftArrowVisible = useCallback(() => {
+    const galleryLeftPosition = galleryList.current.getBoundingClientRect().left;
+    const firstItemLeftPosition = firstGalleryItem.current.getBoundingClientRect().left;
+    setLeftArrowVisible(galleryLeftPosition !== firstItemLeftPosition);
+  }, []);
 
-  const _setScrollValue = useCallback(() => {
-    setScrollValue(galleryList.current.scrollTop);
+  // right arrow visibility
+  const [ rightArrowVisible, setRightArrowVisible ] = useState(true);
+  const _setRightArrowVisible = useCallback(() => {
+    const galleryRightPosition = galleryList.current.getBoundingClientRect().right;
+    const lastItemRightPosition = lastGalleryItem.current.getBoundingClientRect().right;
+    setRightArrowVisible(galleryRightPosition !== lastItemRightPosition);
+  }, []);
+
+  /* --- scroll functionality */
+  // y axis
+  const [ yScrollValue, setYScrollValue ] = useState(0);
+
+  const _setYScrollValue = useCallback(() => {
+    setYScrollValue(galleryList.current.scrollTop);
   }, []);
 
   const scrollDown = useCallback(() => {
     galleryList.current.scroll({
-      top: scrollValue + 88,
+      top: yScrollValue + 88,
       behavior: 'smooth'
     });
-    // setScrollValue(scrollValue + 88);
-  }, [ scrollValue ]);
+  }, [ yScrollValue ]);
 
   const scrollUp = useCallback(() => {
     galleryList.current.scroll({
-      top: scrollValue - 88,
+      top: yScrollValue - 88,
       behavior: 'smooth'
     });
-    // setScrollValue(scrollValue - 88);
-  }, [ scrollValue ]);
+  }, [ yScrollValue ]);
+
+  // x axis
+  const [ xScrollValue, setXScrollValue ] = useState(0);
+
+  const _setXScrollValue = useCallback(() => {
+    setXScrollValue(galleryList.current.scrollLeft);
+  }, []);
+
+  const scrollRight = useCallback(() => {
+    galleryList.current.scroll({
+      left: xScrollValue + 88,
+      behavior: 'smooth'
+    });
+  }, [ xScrollValue ]);
+
+  const scrollLeft = useCallback(() => {
+    galleryList.current.scroll({
+      left: xScrollValue - 88,
+      behavior: 'smooth'
+    });
+  }, [ xScrollValue ]);
+
+  /* Set scroll values and check arrows visibility */
+  const setScrollValuesAndCheckArrowsVisibility = useCallback(() => {
+    _setYScrollValue();
+    _setUpArrowVisible();
+    _setDownArrowVisible();
+    _setXScrollValue();
+    _setLeftArrowVisible();
+    _setRightArrowVisible();
+  }, []);
+
+  const setItemsNumberAndArrowsVisibility = useCallback(() => {
+    setScrollValuesAndCheckArrowsVisibility();
+
+    const itemsNumber = 
+    (window.innerWidth < 450) ? 3
+    : (window.innerWidth < 576) ? 4
+    : (window.innerWidth < 680) ? 5
+    : 6
+    setItemsNumber(itemsNumber);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('resize', setItemsNumberAndArrowsVisibility);
+    return () => {
+      window.removeEventListener('resize', setItemsNumberAndArrowsVisibility);
+    }
+  }, [ upArrowVisible, leftArrowVisible, downArrowVisible, rightArrowVisible ]);
 
   return (
     <div className="gallery">
@@ -69,16 +136,22 @@ const Gallery = (props) => {
             <i className="fas fa-chevron-up" aria-hidden="true" />
           </button>
         }
+        {
+          (arrowsVisible && leftArrowVisible) &&
+          <button 
+            className="gallery__arrowBtn gallery__arrowBtn_direction_left"
+            aria-label="previous img"
+            onClick={scrollLeft}
+          >
+            <i className="fas fa-chevron-left" aria-hidden="true" />
+          </button>
+        }
 
         {/* list */}
         <div 
           className="gallery__listContainer"
           ref={galleryList}
-          onScroll={() => {
-            _setScrollValue();
-            _setUpArrowVisible();
-            _setDownArrowVisible();
-          }}
+          onScroll={setScrollValuesAndCheckArrowsVisibility}
         >          
           <ul 
             className="gallery__list" 
@@ -118,6 +191,16 @@ const Gallery = (props) => {
             onClick={scrollDown}
           >
             <i className="fas fa-chevron-down" aria-hidden="true" />
+          </button>
+        }
+        {
+          (arrowsVisible && rightArrowVisible) &&
+          <button 
+            className="gallery__arrowBtn gallery__arrowBtn_direction_right"
+            aria-label="next img"
+            onClick={scrollRight}
+          >
+            <i className="fas fa-chevron-right" aria-hidden="true" />
           </button>
         }
       </div>

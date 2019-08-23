@@ -28,6 +28,7 @@ const PriceRange = (props) => {
       <div className="priceRange__inputContainer">
         <label htmlFor="min" className="priceRange__label">From (EGP)</label>
         <input 
+          tabIndex={visible ? 0 : -1}
           type="number" 
           min={min} 
           max={max} 
@@ -40,6 +41,7 @@ const PriceRange = (props) => {
       <div className="priceRange__inputContainer">
         <label htmlFor="max" className="priceRange__label">To (EGP)</label>
         <input 
+          tabIndex={visible ? 0 : -1}
           type="number" 
           min={min} 
           max={max} 
