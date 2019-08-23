@@ -6,10 +6,12 @@ const ProductDetails = (props) => {
 
   /* --- visible panel */
   const panels = [ 'highlights', 'description', 'specifications' ];
-  const [ activePanel, setActivePanel ] = useState('description');
-  const _setActivePanel = useCallback((event, panel) => {
+
+  const [ activePanelName, setActivePanelName ] = useState('description');
+
+  const _setActivePanelName = useCallback((event, panel) => {
     event.preventDefault();
-    setActivePanel(panel);
+    setActivePanelName(panel);
   });
 
   /* panels */
@@ -22,7 +24,7 @@ const ProductDetails = (props) => {
     <div className="productDescription">
       <div className="productDescription__textContainer">
         <h4 className="productDescription__title">{product.name}</h4>
-        <p className="productDescription__desc">{product.desc}</p>
+        <p className="productDescription__desc">{product.description}</p>
       </div>
       <img src={product.imgs[1]} alt={`${product.name} product`} className="productDescription__img"/>
     </div>
@@ -32,12 +34,21 @@ const ProductDetails = (props) => {
       {
         Object.keys(product.specs).map((key) => (
           <li className="productSpec" key={key}>
-            {key}: {product.specs[key]}
+            <b>{key}</b>: {product.specs[key]}
           </li>
         ))
       }
     </ul>
   );
+
+  // determine active panel
+  const activePanel = 
+  (activePanelName === 'highlights')
+  ? highlights
+  : (activePanelName === 'description')
+  ? description
+  : specs
+
 
   return (
     <section className="productDetails">
@@ -51,8 +62,8 @@ const ProductDetails = (props) => {
                 <li className="productDetails__navItem" key={panel}>
                   <a 
                     href="#" 
-                    className={`productDetails__navLink${panel === activePanel ? ' active' : ''}`}
-                    onClick={(event) => _setActivePanel(event, panel)}
+                    className={`productDetails__navLink${panel === activePanelName ? ' active' : ''}`}
+                    onClick={(event) => _setActivePanelName(event, panel)}
                   >
                     {panel}
                   </a>
@@ -61,6 +72,10 @@ const ProductDetails = (props) => {
             }
           </ul>
         </nav>
+
+        <div className="productDetails__panel">
+          {activePanel}
+        </div>
       </div>
     </section>
   );

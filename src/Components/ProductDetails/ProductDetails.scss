@@ -1,5 +1,10 @@
 @import '../../sass/colors';
 
+.productDetails {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 /* title */
 .productDetails__title {
   font-weight: bold;
@@ -16,6 +21,7 @@
 /* nav list */
 .productDetails__navList {
   padding-left: 0;
+  margin-bottom: 0;
   list-style: none;
 
   display: flex;
@@ -78,5 +84,47 @@
   @media screen and (min-width: 500px) {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+}
+
+/* ----- panel */
+.productDetails__panel {
+  padding: 2rem 0;
+
+  @media screen and (min-width: 768px) {
+    padding: 4rem 0;
+  }
+}
+
+/* --- description */
+.productDescription {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.productDescription__title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.productDescription__desc {
+  text-transform: uppercase;
+  max-width: 25rem;
+  
+  @media screen and (min-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 4rem;
+  }
+}
+
+.productDescription__img {
+  width: 100%;
+  max-width: 13rem;
+
+  @media screen and (min-width: 768px) {
+    max-width: 22rem;
   }
 }
