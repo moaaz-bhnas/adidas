@@ -1,10 +1,5 @@
 @import '../../sass/colors';
 
-.productDetails {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
 /* title */
 .productDetails__title {
   font-weight: bold;
@@ -100,7 +95,8 @@
 .productDescription {
   @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
   }
 }
