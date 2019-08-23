@@ -7,7 +7,7 @@ const Coordinates = (props) => {
   return (
     <div className="coordinates">
       <div className="container">
-        <h3 className="coordinates__title">Complete the Look</h3>
+        <h5 className="coordinates__title">Complete the Look</h5>
 
         <ul className="coordinates__list">
           {

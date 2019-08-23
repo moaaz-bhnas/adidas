@@ -308,13 +308,20 @@
 }
 
 /* page language */
-.header__pageLanguage {
+.header__languageBtn2 {
   display: none;
 
   @media screen and (min-width: 520px) {
     display: block;
+    border: none;
+    padding: .5rem;
+    background-color: transparent;
     color: #fff;
     margin-right: 1rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 

@@ -38,7 +38,7 @@ const ProductInfo = (props) => {
         </div>
 
         {/* name */}
-        <h2 className="productInfo__name">{product.name}</h2>
+        <h4 className="productInfo__name">{product.name}</h4>
 
         {/* prices */}
         <p className="productInfo__prices">
@@ -55,7 +55,7 @@ const ProductInfo = (props) => {
         }
 
         {/* available colors */}
-        <h3 className="productInfo__colorsTitle">Available Colors</h3>
+        <h5 className="productInfo__colorsTitle">Available Colors</h5>
 
         <ul className="productInfo__colorsNamesList">
           {

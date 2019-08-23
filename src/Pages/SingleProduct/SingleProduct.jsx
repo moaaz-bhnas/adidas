@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import './SingleProduct.scss';
 import productImg from '../../img/product.png';
+import productImg2 from '../../img/product2.png';
 import Gallery from '../../Components/Gallery/Gallery';
 import ProductInfo from '../../Components/ProductInfo/ProductInfo';
 import color1 from '../../img/color-1.png';
 import color2 from '../../img/color-2.png';
 import coordinate from '../../img/coordinate.png'
-import test1 from '../../img/test.png';
-import test2 from '../../img/test2.png';
+// import test1 from '../../img/test.png';
+// import test2 from '../../img/test2.png';
 import Coordinates from '../../Components/Coordinates/Coordinates';
+import ProductDetails from '../../Components/ProductDetails/ProductDetails';
 
 const product = {
   name: 'Ultraboost 19 Shoes',
   imgs: [
     productImg,
+    productImg2,
     // test1,
     // test2,
     'https://via.placeholder.com/800.png',
@@ -24,8 +27,7 @@ const product = {
     'https://via.placeholder.com/750x800.png',
     'https://via.placeholder.com/750.png',
     'https://via.placeholder.com/700x750.png',
-    'https://via.placeholder.com/810x740.png',
-    'https://via.placeholder.com/820.png'
+    'https://via.placeholder.com/810x740.png'
   ],
   starsNum: 4,
   reviews: [
@@ -56,10 +58,16 @@ const product = {
   gender: 'men',
   sport: 'running',
   coordinates: [
-    { img: coordinate, price: 600 },
-    { img: test1, price: 700 },
-    { img: test2, price: 800 }
-  ]
+    { img: coordinate, price: 800 },
+    { img: coordinate, price: 800 },
+    { img: coordinate, price: 800 }
+  ],
+  description: 'Shoes with endless energy for long city runs.',
+  specs: {
+    gender: 'men',
+    category: 'shoes',
+    sport: 'running'
+  }
 }
 
 class SingleProduct extends Component {
@@ -74,6 +82,8 @@ class SingleProduct extends Component {
     return (
       <main className="productPage">
         <article>
+          <h2 className="sr-only">{product.name} product</h2>
+
           {/* Thriller */}
           <p className="thriller">
             <i aria-hidden="true" className="fas fa-truck" /> Free shippings and free returns
@@ -100,11 +110,15 @@ class SingleProduct extends Component {
             </div>
           </nav>
         
-          <div className="galleryAndInfo">
+          <section className="galleryAndInfo">
+            <h3 className="sr-only">Product Gallery and Info</h3>
+
             <Gallery imgs={product.imgs} />
             <ProductInfo product={product} />
             <Coordinates coordinates={product.coordinates} />
-          </div>
+          </section>
+
+          <ProductDetails product={product} />
         </article>
       </main>
     );

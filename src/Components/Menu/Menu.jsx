@@ -90,6 +90,8 @@ const Menu = (props) => {
         ref={headerRef}
       >
         <div className="container">
+          <h1 className="sr-only">Adidas</h1>
+
           <div className="header__topBar" ref={topBarRef}>
             {/* Secondary navigation */}
             <nav className="servicesNav">
@@ -169,7 +171,7 @@ const Menu = (props) => {
               </ul>
             </nav>
             {/* Page language */}
-            <span className="header__pageLanguage">اللغة العربية</span>
+            <button className="header__languageBtn2">اللغة العربية</button>
             {/* search form */}
             <form 
               className="header__searchForm"
