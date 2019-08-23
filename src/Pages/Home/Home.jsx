@@ -29,7 +29,6 @@ class Home extends PureComponent {
         <Editions />
         <BottomBanner />
         <Trending products={products} />
-        <Contact />
       </main>
     );
   }
