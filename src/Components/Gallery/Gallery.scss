@@ -8,9 +8,26 @@
   background-color: $grey;
   padding: 1rem;
   position: relative;
+  margin-bottom: 1.5rem;
   
   @media screen and (min-width: 768px) {
-    height: 28rem;
+    height: 25rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    width: 77%;
+    margin-right: .7rem;
+    height: initial;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 1.5rem;
+    background-color: $grey;
   }
 }
 
@@ -18,12 +35,26 @@
 .gallery__activeImg {
   width: 100%;
   max-width: 23rem;
-  height: 17.5rem;
-  object-fit: cover;
+  height: 13rem;
+  object-fit: contain;
   margin: auto;
+  
+  @media screen and (min-width: 576px) {
+    max-width: 25rem;
+    height: 17.5rem;
+  }
 
   @media screen and (min-width: 768px) {
-    height: 21rem;
+    max-height: 21rem;
+  }
+
+  @media screen and (min-width: 992px) {
+    max-width: 32rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    max-height: 32rem;
+    height: initial;
   }
 }
 
@@ -66,6 +97,10 @@
     width: auto;
     height: 4 * 5.5rem;
   }
+
+  @media screen and (min-width: 1200px) {
+    height: 5 * 5.5rem;
+  }
 }
 
 .gallery__list {
@@ -102,14 +137,14 @@
   display: flex;
 
   &[aria-pressed="true"] {
-    border-bottom-width: 2px;
-    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .5);
+    border-bottom-width: 2.5px;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .8);
   }
 
   &:focus {
     outline: none;
-    border-bottom-width: 2px;
-    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .5);
+    border-bottom-width: 2.5px;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, .8);
   }
 }
 

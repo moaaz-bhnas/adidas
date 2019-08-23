@@ -109,7 +109,8 @@ const Gallery = (props) => {
     (window.innerWidth < 450) ? 3
     : (window.innerWidth < 576) ? 4
     : (window.innerWidth < 680) ? 5
-    : 6
+    : (window.innerWidth < 1200) ? 6
+    : 5
     setItemsNumber(itemsNumber);
   }, []);
 

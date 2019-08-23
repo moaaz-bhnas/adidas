@@ -70,4 +70,11 @@
       color: $primary-color !important;
     }
   }
+
+  /* gallery & info */
+  .galleryAndInfo {
+    @media screen and (min-width: 1200px) {
+      display: flex;
+    }
+  }
 }

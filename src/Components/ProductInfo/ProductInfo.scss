@@ -1,0 +1,156 @@
+@import '../../sass/colors';
+
+/* rating */
+.productInfo__rating {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+}
+
+/* reviews */
+.productInfo__reviewsLink {
+  color: $black;
+  text-decoration: underline;
+  margin-left: .4rem;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+/* category */
+.productInfo__category {
+  color: $dark-grey;
+  text-transform: uppercase;
+  margin-top: .8rem;
+  line-height: 1;
+}
+
+/* name */
+.productInfo__name {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* prices */
+.productInfo__newPrice {
+  &.discount {
+    color: $primary-color;
+  }
+}
+
+.productInfo__oldPrice {
+  color: $dark-grey;
+}
+
+/* promotion discounts */
+.productInfo__promotionalDiscountState {
+  margin: 1.3rem 0;
+}
+
+/* available colors - title */
+.productInfo__colorsTitle {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+}
+
+/* colors names list */
+.productInfo__colorsNamesList {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+
+  display: flex;
+  color: $dark-grey;
+  text-transform: uppercase;
+}
+
+.productInfo__colorName {
+  + .productInfo__colorName {
+    &::before {
+      content: '/';
+      padding: 0 .5rem;
+    }
+  }
+}
+
+/* color images list */
+.productInfo__colorsImgsList {
+  padding-left: 0;
+  margin: .7rem 0 2.5rem;
+  list-style: none;
+
+  display: flex;
+}
+
+.productInfo__colorImgContainer {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: $grey;
+  margin-right: .7rem;
+
+  display: flex;
+}
+
+.productInfo__colorImg {
+  width: 4rem;
+  margin: auto;
+}
+
+/* size */
+.productInfo__sizeChartBtn {
+  border: none;
+  background-color: transparent;
+  margin-bottom: .5rem;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.productInfo__sizeSelect {
+  width: auto;
+  margin-right: .5rem;
+
+  @media screen and (min-width: 1200px) {
+    flex-grow: 5;
+  }
+}
+
+/* quantity */
+.productInfo__quantityInput {
+  width: 5rem;
+  margin-bottom: .7rem;
+
+  @media screen and (min-width: 1200px) {
+    flex-grow: 1;
+  }
+}
+
+/* add to bag */
+.productInfo__addBtn {
+  color: #fff;
+  background-color: $black;
+  border: none;
+  text-transform: uppercase;
+  padding: .7rem 1rem;
+  text-align: left;
+  font-weight: 500;
+  width: 12rem;
+  margin-right: .5rem;
+
+  @media screen and (min-width: 1200px) {
+    flex-grow: 1;
+  }
+}
+
+/* like button */
+.productInfo__likeBtn {
+  border: none;
+  background-color: transparent;
+  width: 3rem;
+}
