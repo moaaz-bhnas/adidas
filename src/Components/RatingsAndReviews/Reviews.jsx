@@ -39,6 +39,14 @@ const Reviews = (props) => {
       </nav>
     
       <ReviewsList reviews={visibleReviews} />
+
+      <div className="reviews__btns">
+        <button className="reviews__loadBtn">
+          Load More <i className="fas fa-arrow-right" aria-hidden="true" />
+        </button>
+
+        <button className="reviews__writeReviewBtn">Write a Review</button>
+      </div>
     </div>
   );
 }

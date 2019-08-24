@@ -44,6 +44,10 @@
 /* column link */
 .footerCol__link {
   color: $black !important;
+
+  &:hover {
+    color: $primary-color !important;
+  }
 }
 
 /* RE Logo */

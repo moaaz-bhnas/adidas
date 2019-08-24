@@ -1,4 +1,5 @@
 @import '../../sass/colors';
+
 .reviews {
   @media screen and (min-width: 992px) {
     flex-grow: 1;
@@ -67,4 +68,47 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+}
+
+/* btns */
+.reviews__btns {
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.reviews__loadBtn,
+.reviews__writeReviewBtn {
+  border: none;
+  border-radius: .15rem;
+  width: 13rem;
+  padding: 1rem .6rem;
+
+  @media screen and (min-width: 992px) {
+    width: 50%;
+  }
+}
+
+.reviews__loadBtn {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1.5rem;
+
+  .fa-arrow-right {
+    transition: transform .15s;
+  }
+
+  &:hover,
+  &:focus {
+    .fa-arrow-right {
+      transform: translate(.4rem)
+    }
+  }
+}
+
+.reviews__writeReviewBtn {
+  color: #fff;
+  background-color: $black;
+  text-align: left;
 }
