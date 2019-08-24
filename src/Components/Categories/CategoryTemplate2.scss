@@ -1,0 +1,34 @@
+@import '../../sass/colors';
+
+.category {
+  height: 18rem;
+  padding: 1rem;
+  width: 100%;
+
+  @media screen and (min-width: 576px) {
+    width: 50%;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 25%;
+  }
+}
+
+/* container */
+.category__container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
+
+  background-color: #555;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* btn */
+.category__btn {
+  margin-top: auto;
+}

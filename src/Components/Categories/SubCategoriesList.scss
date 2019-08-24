@@ -1,0 +1,55 @@
+@import '../../sass/colors';
+
+.subCategories {
+  display: flex;
+  justify-content: center;
+  margin: -3.5rem 1rem 0;
+}
+
+.subCategories__container {
+  text-align: center;
+  background-color: #fff;
+  padding: 1rem 0 .2rem;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  @media screen and (min-width: 992px) {
+    padding-left: 13rem;
+    padding-right: 13rem;
+  }
+}
+
+/* title */
+.subCategories__title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* list */
+.subCategories__list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* link */
+.subCategory__link {
+  // font-size: 1.1rem;
+  display: block;
+  text-transform: uppercase;
+  color: rgba($color: $black, $alpha: .7);
+  padding: .8rem 1rem;
+  transition: color .15s;
+
+  &:hover {
+    color: $black;
+  }
+}
