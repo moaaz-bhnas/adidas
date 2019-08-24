@@ -82,9 +82,15 @@
   border-radius: .15rem;
   width: 13rem;
   padding: 1rem .6rem;
+  transition: box-shadow .15s ease-in-out;
 
   @media screen and (min-width: 992px) {
     width: 50%;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
   }
 }
 
