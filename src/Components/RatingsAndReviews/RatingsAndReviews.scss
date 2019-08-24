@@ -1,0 +1,16 @@
+.ratingsAndReviews {
+  margin-bottom: 3rem;
+}
+
+.ratingsAndReviews__container {
+  @media screen and (min-width: 992px) {
+    display: flex;
+  }
+}
+
+/* title */
+.ratingsAndReviews__title {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}

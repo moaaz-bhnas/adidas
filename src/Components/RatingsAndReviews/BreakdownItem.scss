@@ -1,0 +1,44 @@
+@import '../../sass/colors';
+
+.ratingBreakdownItem {
+  display: flex;
+  align-items: center;
+}
+
+/* reviews toggler btn */
+.ratingBreakdownItem__btn {
+  border: none;
+  background-color: transparent;
+  color: $black;
+  text-decoration: underline;
+  padding: .5rem;
+  text-transform: uppercase;
+
+  &:hover,
+  &:focus {
+    color: $primary-color;
+  }
+}
+
+/* graph */
+.ratingBreakdownItem__graph {
+  width: 8rem;
+  height: .4rem;
+  background-color: #767677;
+  margin: 0 auto 0 .8rem;
+
+  @media screen and (min-width: 576px) {
+    width: 12.5rem;
+  }
+}
+
+.ratingBreakdownItem__proportion {
+  background-color: $green;
+  height: 100%;
+}
+
+/* reviews num */
+.ratingBreakdownItem__reviewsNum {
+  margin-bottom: 0;
+  color: $dark-grey;
+}

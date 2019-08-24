@@ -5,7 +5,6 @@ import Categories from '../../Components/Categories/Categories';
 import Editions from '../../Components/Editions/Editions';
 import BottomBanner from '../../Components/BottomBanner/BottomBanner';
 import Trending from '../../Components/Trending/Trending';
-import Contact from '../../Components/Contact/Contact';
 import trending1 from '../../img/trending-1.png';
 import trending2 from '../../img/trending-2.png';
 import trending3 from '../../img/trending-3.png';

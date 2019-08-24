@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react';
 import './ProductInfo.scss';
+import Stars from './Stars';
 
 const ProductInfo = (props) => {
   const { product } = props;
@@ -16,15 +17,7 @@ const ProductInfo = (props) => {
       <div className="container">
         <div className="d-flex">
           {/* rating */}
-          <ul className="productInfo__rating">
-            {
-              Array(product.starsNum).fill(null).map((el, index) => (
-                <li className="productInfo__starItem" key={index}>
-                  <i className="fas fa-star productInfo__star" role="img" aria-label="star" />
-                </li>
-              ))
-            }
-          </ul>
+          <Stars rating={product.starsNum} />
 
           {/* reviews */}
           <a href="#" className="productInfo__reviewsLink">
@@ -90,7 +83,7 @@ const ProductInfo = (props) => {
             <option>Select Size</option>
             {
               product.sizes.map((size) => (
-                <option>{size}</option>
+                <option key={size}>{size}</option>
               ))
             }
           </select>

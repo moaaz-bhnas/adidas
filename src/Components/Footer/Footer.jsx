@@ -23,8 +23,8 @@ const Footer = () => {
 
             <ul className="list footer__list">
               {
-                footerList.map((footerCol) => (
-                  <li className="footer__col">
+                footerList.map((footerCol, index) => (
+                  <li className="footer__col" key={index}>
                     <h3 className="footerCol__title">
                       {footerCol.title.split(' ')[0]} <br/> {footerCol.title.slice(footerCol.title.indexOf(' '))}
                     </h3>

@@ -51,31 +51,29 @@ const ProductDetails = (props) => {
 
 
   return (
-    <section className="productDetails">
-      <div className="container">
-        <h3 className="productDetails__title">Product Details</h3>
+    <section className="productDetails container">
+      <h3 className="productDetails__title">Product Details</h3>
 
-        <nav className="productDetails__nav" aria-label="product details navigation">
-          <ul className="productDetails__navList">
-            {
-              panels.map((panel) => (
-                <li className="productDetails__navItem" key={panel}>
-                  <a 
-                    href="#" 
-                    className={`productDetails__navLink${panel === activePanelName ? ' active' : ''}`}
-                    onClick={(event) => _setActivePanelName(event, panel)}
-                  >
-                    {panel}
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
+      <nav className="productDetails__nav" aria-label="product details navigation">
+        <ul className="productDetails__navList">
+          {
+            panels.map((panel) => (
+              <li className="productDetails__navItem" key={panel}>
+                <a 
+                  href="#" 
+                  className={`productDetails__navLink${panel === activePanelName ? ' active' : ''}`}
+                  onClick={(event) => _setActivePanelName(event, panel)}
+                >
+                  {panel}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
 
-        <div className="productDetails__panel">
-          {activePanel}
-        </div>
+      <div className="productDetails__panel">
+        {activePanel}
       </div>
     </section>
   );

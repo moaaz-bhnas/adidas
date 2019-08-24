@@ -1,0 +1,49 @@
+@import '../../sass/colors';
+
+.ratings {
+  width: 17.0625rem;
+  margin-bottom: 3rem;
+
+  @media screen and (min-width: 576px) {
+    width: 22rem;
+  }
+
+  @media screen and (min-width: 992px) {
+    margin-right: 8rem;
+    flex-shrink: 0;
+  }
+}
+
+/* --- summary */
+.ratings__summary {
+  background-color: $green;
+  padding: 1.2rem 0;
+  margin-bottom: 1.5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* number rating */
+.ratings__ratingInNumber {
+  margin-bottom: 0;
+  margin-right: 1rem;
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* reviews number */
+.ratings__reviewsNum {
+  margin-bottom: 0;
+  margin-top: .5rem;
+  line-height: 1;
+}
+
+/* --- breakdown */
+.ratingBreakdown__title {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}

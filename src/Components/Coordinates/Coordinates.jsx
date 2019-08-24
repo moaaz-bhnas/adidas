@@ -11,8 +11,8 @@ const Coordinates = (props) => {
 
         <ul className="coordinates__list">
           {
-            coordinates.map((coordinate) => (
-              <li className="coordinate" key={coordinate.img}>
+            coordinates.map((coordinate, index) => (
+              <li className="coordinate" key={index}>
                 <div className="coordinate__imgContainer">
                   <img src={coordinate.img} alt="" className="coordinate__img"/>
                 </div>

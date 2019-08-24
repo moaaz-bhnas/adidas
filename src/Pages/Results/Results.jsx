@@ -28,23 +28,21 @@ class Results extends Component {
         </p>
 
         {/* Breadcrumb */}
-        <nav className="breadcrumbBar" aria-label="Breadcrumb">
-          <div className="container">
-            <a 
-              href="#" 
-              className="breadcrumbBar__backLink"
-              onClick={this.goBack}
-            > 
-              <i className="fas fa-arrow-left" aria-hidden="true" /> <span className="text-underline ml-2">Back</span>
-            </a>
+        <nav className="breadcrumbBar container" aria-label="Breadcrumb">
+          <a 
+            href="#" 
+            className="breadcrumbBar__backLink"
+            onClick={this.goBack}
+          > 
+            <i className="fas fa-arrow-left" aria-hidden="true" /> <span className="text-underline ml-2">Back</span>
+          </a>
 
-            <ol className="list breadcrumbList">
-              <li className="breadcrumbBar__item">
-                <Link className="breadcrumbBar__link" to="/">Home</Link>
-              </li>
-              <li className="breadcrumbBar__item" aria-current="page">{query}</li>
-            </ol>
-          </div>
+          <ol className="list breadcrumbList">
+            <li className="breadcrumbBar__item">
+              <Link className="breadcrumbBar__link" to="/">Home</Link>
+            </li>
+            <li className="breadcrumbBar__item" aria-current="page">{query}</li>
+          </ol>
         </nav>
 
         <Result products={products} query={query} />

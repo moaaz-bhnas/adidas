@@ -21,10 +21,7 @@
   /* breadcrumb */
   .breadcrumbBar {
     margin-bottom: 1rem;
-  
-    .container {
-      display: flex;
-    }
+    display: flex;
   }
   
   /* back link */
@@ -82,5 +79,16 @@
       justify-content: space-between;
       flex-wrap: wrap;
     }
+  }
+
+  /* related products */
+  .relatedProducts {
+    margin-bottom: 8rem;
+  }
+
+  .relatedProducts__title {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
   }
 }

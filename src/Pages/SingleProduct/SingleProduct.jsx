@@ -12,6 +12,12 @@ import coordinate from '../../img/coordinate.png'
 // import test2 from '../../img/test2.png';
 import Coordinates from '../../Components/Coordinates/Coordinates';
 import ProductDetails from '../../Components/ProductDetails/ProductDetails';
+import ProductsList from '../../Components/ProductsList/ProductsList';
+import related1 from '../../img/trending-1.png';
+import related2 from '../../img/trending-2.png';
+import related3 from '../../img/trending-3.png';
+import related4 from '../../img/trending-4.png';
+import Ratings from '../../Components/RatingsAndReviews/RatingsAndReviews';
 
 const product = {
   name: 'Ultraboost 19 Shoes',
@@ -33,18 +39,27 @@ const product = {
   reviews: [
     {
       starsNum: 5,
-      summary: 'Supreme trainers',
-      details: 'Super comfortable. Fits to the feed so snuggly. Massive improvements over previous models.'
+      title: 'Supreme trainers',
+      paragraph: 'Super comfortable. Fits to the feed so snuggly. Massive improvements over previous models.',
+      category: 'newest'
     },
     {
       starsNum: 4,
-      summary: 'good quality',
-      details: 'It\'s a great product, but I really didn\'t like the colors. It looks better in the photo ..'
+      title: 'good quality',
+      paragraph: 'It\'s a great product, but I really didn\'t like the colors. It looks better in the photo ..',
+      category: 'helpful'
     },
     {
       starsNum: 5,
-      summary: 'More comfortable than 4.0',
-      details: 'More boost which increases comfort. Primeknet hugs around feet better than the old ultra boost.'
+      title: 'More comfortable than 4.0',
+      paragraph: 'More boost which increases comfort. Primeknet hugs around feet better than the old ultra boost.',
+      category: 'relevant'
+    },
+    {
+      starsNum: 3,
+      title: 'Normal',
+      paragraph: 'Normal',
+      category: 'helpful'
     }
   ],
   price: 1775,
@@ -70,6 +85,13 @@ const product = {
   }
 }
 
+const relatedProducts = [
+  { id: 0, name: 'Lite Racer RBN Shoes', sport: 'Essentials', price: 1350, discount: 25, img: related1 },
+  { id: 1, name: 'Duramo 9 Shoes', sport: 'Running', price: 1230, img: related2 },
+  { id: 2, name: 'Adilette Comfort Slides', sport: 'Swim', price: 570, img: related3 },
+  { id: 4, name: 'Adilette Cloudform Plus Stripes Slides', sport: 'Essentials', price: 350, img: related4 }
+]; 
+
 class SingleProduct extends Component {
   state = {  }
   
@@ -90,24 +112,22 @@ class SingleProduct extends Component {
           </p>
 
           {/* Breadcrumb */}
-          <nav className="breadcrumbBar" aria-label="Breadcrumb">
-            <div className="container">
-              <a 
-                href="#" 
-                className="breadcrumbBar__backLink"
-                onClick={this.goBack}
-              > 
-                <i className="fas fa-arrow-left" aria-hidden="true" /> <span className="text-underline ml-2">Back</span>
-              </a>
+          <nav className="breadcrumbBar container" aria-label="Breadcrumb">
+            <a 
+              href="#" 
+              className="breadcrumbBar__backLink"
+              onClick={this.goBack}
+            > 
+              <i className="fas fa-arrow-left" aria-hidden="true" /> <span className="text-underline ml-2">Back</span>
+            </a>
 
-              <ol className="list breadcrumbList">
-                <li className="breadcrumbBar__item">
-                  <Link className="breadcrumbBar__link" to="/">Home</Link>
-                </li>
-                <li className="breadcrumbBar__item">Products</li>
-                <li className="breadcrumbBar__item" aria-current="page">{product.name}</li>
-              </ol>
-            </div>
+            <ol className="list breadcrumbList">
+              <li className="breadcrumbBar__item">
+                <Link className="breadcrumbBar__link" to="/">Home</Link>
+              </li>
+              <li className="breadcrumbBar__item">Products</li>
+              <li className="breadcrumbBar__item" aria-current="page">{product.name}</li>
+            </ol>
           </nav>
         
           <section className="galleryAndInfo">
@@ -119,6 +139,15 @@ class SingleProduct extends Component {
           </section>
 
           <ProductDetails product={product} />
+
+          <section className="relatedProducts container">
+            <h3 className="relatedProducts__title">
+              You may also like
+            </h3>
+            <ProductsList products={relatedProducts} />
+          </section>
+
+          <Ratings product={product} />
         </article>
       </main>
     );
