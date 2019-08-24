@@ -12,7 +12,7 @@ const EditionTemplate = (props) => {
       >
         <h3 className="edition__title">{edition.name} Edition</h3>
         <a href="#" className={`btn-3d ${index === 0 ? 'btn-3d_theme_white' : 'btn-3d_theme_black'}`}>
-          Shop now <i className="fas fa-arrow-right ml-4"></i>
+          Shop now <i className="fas fa-arrow-right ml-4" />
         </a>
       </div>
     </li>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TopBanner from '../../Components/TopBanner/TopBanner2';
 import SubCategoriesList from '../../Components/Categories/SubCategoriesList';
 import Categories from '../../Components/Categories/Categories2';
+import Collections from '../../Components/Collections/Collections';
 
 class SingleCategory extends Component {
   state = {  }
@@ -16,6 +17,8 @@ class SingleCategory extends Component {
         <SubCategoriesList title={category} subCategories={subCategories} />
 
         <Categories />
+
+        <Collections />
       </main>
     );
   }
