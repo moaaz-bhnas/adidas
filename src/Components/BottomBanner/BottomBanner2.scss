@@ -1,0 +1,27 @@
+.bottomBanner2 {
+  color: #fff;
+  background: #555 url('../../img/bottom-banner2.png') no-repeat center / cover;
+  height: 32rem;
+  margin-bottom: 2rem;
+
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  /* title */
+  .bottomBanner__title {
+    text-transform: uppercase;
+    font-size: 2rem;
+    color: inherit;
+  }
+  
+  /* paragraph */
+  .bottomBanner__paragraph {
+    max-width: 27rem;
+    font-size: 1.03rem;
+  }
+}
