@@ -1,212 +1,177 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { PureComponent, createRef, useState, useRef, useCallback, useEffect } from 'react';
 import 'element-scroll-polyfill';
 import './Gallery.scss';
 
-const Gallery = (props) => {
-  const { imgs } = props;
+class Gallery extends PureComponent {
+  state = {  
+    thumbnailsNumber: 3,
+    activeIndex: 0,
+    arrowsVisibility: { up: null, down: null, left: null, right: null }
+  }
 
-  /* --- items number */
-  const [ itemsNumber, setItemsNumber ] = useState(3);
+  thumbnailsListRef = createRef();
+  firstThumbnailRef = createRef();
+  lastThumbnailRef  = createRef();
 
-  /* --- active image */
-  const [ activeIndex, setActiveIndex ] = useState(0);
+  /* active index */
+  setActiveIndex = (index) => {
+    this.setState({ activeIndex: index });
+  }
 
-  /* --- arrows visibility */
-  const arrowsVisible = imgs.length > itemsNumber;
-
-  // up arrow visibility
-  const galleryList = useRef();
-  const firstGalleryItem = useRef();
-  const [ upArrowVisible, setUpArrowVisible ] = useState(false);
-  const _setUpArrowVisible = useCallback(() => {
-    const galleryTopPosition = galleryList.current.getBoundingClientRect().top;
-    const firstItemTopPosition = firstGalleryItem.current.getBoundingClientRect().top;
-    setUpArrowVisible(galleryTopPosition !== firstItemTopPosition);
-  }, []);
-
-  // down arrow visibility
-  const lastGalleryItem = useRef();
-  const [ downArrowVisible, setDownArrowVisible ] = useState(true);
-  const _setDownArrowVisible = useCallback(() => {
-    const galleryBottomPosition = galleryList.current.getBoundingClientRect().bottom;
-    const lastItemBottomPosition = lastGalleryItem.current.getBoundingClientRect().bottom;
-    setDownArrowVisible(galleryBottomPosition !== lastItemBottomPosition);
-  }, []);
-
-  // left arrow visibility
-  const [ leftArrowVisible, setLeftArrowVisible ] = useState(false);
-  const _setLeftArrowVisible = useCallback(() => {
-    const galleryLeftPosition = galleryList.current.getBoundingClientRect().left;
-    const firstItemLeftPosition = firstGalleryItem.current.getBoundingClientRect().left;
-    setLeftArrowVisible(galleryLeftPosition !== firstItemLeftPosition);
-  }, []);
-
-  // right arrow visibility
-  const [ rightArrowVisible, setRightArrowVisible ] = useState(true);
-  const _setRightArrowVisible = useCallback(() => {
-    const galleryRightPosition = galleryList.current.getBoundingClientRect().right;
-    const lastItemRightPosition = lastGalleryItem.current.getBoundingClientRect().right;
-    setRightArrowVisible(galleryRightPosition !== lastItemRightPosition);
-  }, []);
-
-  /* --- scroll functionality */
-  // y axis
-  const [ yScrollValue, setYScrollValue ] = useState(0);
-
-  const _setYScrollValue = useCallback(() => {
-    setYScrollValue(galleryList.current.scrollTop);
-  }, []);
-
-  const scrollDown = useCallback(() => {
-    galleryList.current.scroll({
-      top: yScrollValue + 88,
-      behavior: 'smooth'
-    });
-  }, [ yScrollValue ]);
-
-  const scrollUp = useCallback(() => {
-    galleryList.current.scroll({
-      top: yScrollValue - 88,
-      behavior: 'smooth'
-    });
-  }, [ yScrollValue ]);
-
-  // x axis
-  const [ xScrollValue, setXScrollValue ] = useState(0);
-
-  const _setXScrollValue = useCallback(() => {
-    setXScrollValue(galleryList.current.scrollLeft);
-  }, []);
-
-  const scrollRight = useCallback(() => {
-    galleryList.current.scroll({
-      left: xScrollValue + 88,
-      behavior: 'smooth'
-    });
-  }, [ xScrollValue ]);
-
-  const scrollLeft = useCallback(() => {
-    galleryList.current.scroll({
-      left: xScrollValue - 88,
-      behavior: 'smooth'
-    });
-  }, [ xScrollValue ]);
-
-  /* Set scroll values and check arrows visibility */
-  const setScrollValuesAndCheckArrowsVisibility = useCallback(() => {
-    _setYScrollValue();
-    _setUpArrowVisible();
-    _setDownArrowVisible();
-    _setXScrollValue();
-    _setLeftArrowVisible();
-    _setRightArrowVisible();
-  }, []);
-
-  const setItemsNumberAndArrowsVisibility = useCallback(() => {
-    setScrollValuesAndCheckArrowsVisibility();
-
-    const itemsNumber = 
+  /* items number */
+  setThumbnailsNumber = () => {
+    const thumbnailsNumber = 
     (window.innerWidth < 450) ? 3
     : (window.innerWidth < 576) ? 4
     : (window.innerWidth < 680) ? 5
     : (window.innerWidth < 1200) ? 6
-    : 5
-    setItemsNumber(itemsNumber);
-  }, []);
+    : 5;
 
-  useEffect(() => {
-    window.addEventListener('resize', setItemsNumberAndArrowsVisibility);
-    return () => {
-      window.removeEventListener('resize', setItemsNumberAndArrowsVisibility);
-    }
-  }, [ upArrowVisible, leftArrowVisible, downArrowVisible, rightArrowVisible ]);
+    this.setState({ thumbnailsNumber });
+  }
 
-  return (
-    <div className="gallery">
-      <img src={imgs[activeIndex]} alt="" className="gallery__activeImg"/>
+  /* arrows visibility */
+  setArrowsVisibility = () => {
+    const thumbnailsListPosition = this.thumbnailsListRef.current.getBoundingClientRect();
+    const firstThumbnailPosition = this.firstThumbnailRef.current.getBoundingClientRect();
+    const lastThumbnailPosition  = this.lastThumbnailRef.current.getBoundingClientRect();
 
-      <div className="gallery__container">
-        {/* top arrow */}
-        {
-          (arrowsVisible && upArrowVisible) &&
-          <button 
-            className="gallery__arrowBtn gallery__arrowBtn_direction_up"
-            aria-label="previous img"
-            onClick={scrollUp}
-          >
-            <i className="fas fa-chevron-up" aria-hidden="true" />
-          </button>
-        }
-        {
-          (arrowsVisible && leftArrowVisible) &&
-          <button 
-            className="gallery__arrowBtn gallery__arrowBtn_direction_left"
-            aria-label="previous img"
-            onClick={scrollLeft}
-          >
-            <i className="fas fa-chevron-left" aria-hidden="true" />
-          </button>
-        }
+    this.setState({
+      arrowsVisibility: {
+        up   : firstThumbnailPosition.top   !== thumbnailsListPosition.top,
+        down : lastThumbnailPosition.bottom !== thumbnailsListPosition.bottom,
+        left : firstThumbnailPosition.left  !== thumbnailsListPosition.left,
+        right: lastThumbnailPosition.right  !== thumbnailsListPosition.right
+      }
+    });
+  }
 
-        {/* list */}
-        <div 
-          className="gallery__listContainer"
-          ref={galleryList}
-          onScroll={setScrollValuesAndCheckArrowsVisibility}
-        >          
-          <ul 
-            className="gallery__list" 
-          >
-            {
-              imgs.map((img, index, arr) => (
-                <li 
-                  className="gallery__item" 
-                  key={index}
-                  ref={
-                    (index === 0) 
-                    ? firstGalleryItem 
-                    : (index === arr.length-1) 
-                    ? lastGalleryItem
-                    : null
-                  }
-                >
-                  <button 
-                    className="gallery__imgBtn"
-                    aria-pressed={index === activeIndex ? true : false}
-                    onClick={() => setActiveIndex(index)}
+  /* scroll functionality */
+  scrollY = (direction) => {
+    const { scrollTop } = this.thumbnailsListRef.current;
+
+    this.thumbnailsListRef.current.scroll({
+      top: scrollTop + (direction === 'down' ? 88 : -88),
+      behavior: 'smooth'
+    });
+  };
+
+  scrollX = (direction) => {
+    const { scrollLeft } = this.thumbnailsListRef.current;
+
+    this.thumbnailsListRef.current.scroll({
+      left: scrollLeft + (direction === 'right' ? 88 : -88),
+      behavior: 'smooth'
+    });
+  }
+
+  setThumbnailsNumberAndArrowsVisibility = () => {
+    this.setThumbnailsNumber();
+    this.setArrowsVisibility();
+  }
+
+  componentDidMount() {
+    this.setThumbnailsNumberAndArrowsVisibility();
+    window.addEventListener('resize', this.setThumbnailsNumberAndArrowsVisibility);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setThumbnailsNumberAndArrowsVisibility);
+  }
+
+  render() {
+    const { imgs } = this.props;
+    const { thumbnailsNumber, activeIndex, arrowsVisibility } = this.state;
+    const arrowsVisible = imgs.length > thumbnailsNumber;
+
+    return (
+      <div className="gallery">
+        <img src={imgs[activeIndex]} alt="" className="gallery__activeImg"/>
+
+        <div className="gallery__container">
+          {/* top arrow */}
+          {
+            (arrowsVisible && arrowsVisibility.up) &&
+            <button 
+              className="gallery__arrowBtn gallery__arrowBtn_direction_up"
+              aria-label="previous img"
+              onClick={() => this.scrollY('up')}
+            >
+              <i className="fas fa-chevron-up" aria-hidden="true" />
+            </button>
+          }
+          {
+            (arrowsVisible && arrowsVisibility.left) &&
+            <button 
+              className="gallery__arrowBtn gallery__arrowBtn_direction_left"
+              aria-label="previous img"
+              onClick={() => this.scrollX('left')}
+            >
+              <i className="fas fa-chevron-left" aria-hidden="true" />
+            </button>
+          }
+
+          {/* list */}
+          <div 
+            className="gallery__listContainer"
+            ref={this.thumbnailsListRef}
+            onScroll={this.setArrowsVisibility}
+          >          
+            <ul 
+              className="gallery__list" 
+            >
+              {
+                imgs.map((img, index, arr) => (
+                  <li 
+                    className="gallery__item" 
+                    key={index}
+                    ref={
+                      (index === 0) 
+                      ? this.firstThumbnailRef 
+                      : (index === arr.length-1) 
+                      ? this.lastThumbnailRef
+                      : null
+                    }
                   >
-                    <img src={img} alt="" className="gallery__img"/>
-                  </button>
-                </li>
-              ))
-            }
-          </ul>
+                    <button 
+                      className="gallery__imgBtn"
+                      aria-pressed={index === activeIndex ? true : false}
+                      onClick={() => this.setActiveIndex(index)}
+                    >
+                      <img src={img} alt="" className="gallery__img"/>
+                    </button>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        
+          {/* down arrow */}
+          {
+            (arrowsVisible && arrowsVisibility.down) &&
+            <button 
+              className="gallery__arrowBtn gallery__arrowBtn_direction_down"
+              aria-label="next img"
+              onClick={() => this.scrollY('down')}
+            >
+              <i className="fas fa-chevron-down" aria-hidden="true" />
+            </button>
+          }
+          {
+            (arrowsVisible && arrowsVisibility.right) &&
+            <button 
+              className="gallery__arrowBtn gallery__arrowBtn_direction_right"
+              aria-label="next img"
+              onClick={() => this.scrollX('right')}
+            >
+              <i className="fas fa-chevron-right" aria-hidden="true" />
+            </button>
+          }
         </div>
-      
-        {/* down arrow */}
-        {
-          (arrowsVisible && downArrowVisible) &&
-          <button 
-            className="gallery__arrowBtn gallery__arrowBtn_direction_down"
-            aria-label="next img"
-            onClick={scrollDown}
-          >
-            <i className="fas fa-chevron-down" aria-hidden="true" />
-          </button>
-        }
-        {
-          (arrowsVisible && rightArrowVisible) &&
-          <button 
-            className="gallery__arrowBtn gallery__arrowBtn_direction_right"
-            aria-label="next img"
-            onClick={scrollRight}
-          >
-            <i className="fas fa-chevron-right" aria-hidden="true" />
-          </button>
-        }
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Gallery;
+
