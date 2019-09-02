@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { memo } from 'react';
 import './OptionsList.scss';
 
 const OptionsList = (props) => {
@@ -21,4 +21,4 @@ const OptionsList = (props) => {
   );
 }
 
-export default OptionsList;
+export default memo(OptionsList);

@@ -6,7 +6,6 @@ const RefinementModal = forwardRef((props, togglerRef) => {
   const { closeModal } = props;
   const closeBtnRef = useRef();
   let lastOption;
-  console.log(togglerRef);
 
   useEffect(function setLastOption() {
     const options = document.querySelectorAll('.refinement__optionBtn');

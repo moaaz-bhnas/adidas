@@ -1,58 +1,67 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { PureComponent } from 'react';
 import './PriceRange.scss';
 
-const PriceRange = (props) => {
-  const { item, visible } = props;
-  const { min, max } = item.range;
+class PriceRange extends PureComponent {
+  state = {  
+    newRange: { newMin: null, newMax: null }
+  }
 
-  // values
-  const [ range, setRange ] = useState({ min, max });
-
-  const handleChange = useCallback((event) => {
-    const { id } = event.target;
+  handleChange = (event) => {
+    const { id, value } = event.target;
     switch (id) {
       case 'min':
-        setRange({ min: event.target.value, max });
+        this.setState({ min: value });
         break;
       case 'max':
-        setRange({ min, max: event.target.value });
-        break
+        this.setState({ max: value });
+        break;
     }
-  });
+  }
 
-  return (
-    <form 
-      className="priceRange" 
-      data-visible={visible}
-    >
-      <div className="priceRange__inputContainer">
-        <label htmlFor="min" className="priceRange__label">From (EGP)</label>
-        <input 
-          tabIndex={visible ? 0 : -1}
-          type="number" 
-          min={min} 
-          max={max} 
-          id="min" 
-          className="form-control priceRange__min" 
-          value={range.min}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="priceRange__inputContainer">
-        <label htmlFor="max" className="priceRange__label">To (EGP)</label>
-        <input 
-          tabIndex={visible ? 0 : -1}
-          type="number" 
-          min={min} 
-          max={max} 
-          id="max" 
-          className="form-control priceRange__max" 
-          value={range.max}
-          onChange={handleChange}
-        />
-      </div>
-    </form>
-  );
+  componentDidMount() {
+    const { min, max } = this.props.item.range;
+    this.setState({ newMin: min, newMax: max });
+  }
+
+  render() {
+    const { item, visible } = this.props;
+    const { min, max } = item.range;
+    const { newMin, newMax } = this.state.newRange;
+
+    return (
+      <form 
+        className="priceRange" 
+        data-visible={visible}
+      >
+        <div className="priceRange__inputContainer">
+          <label htmlFor="min" className="priceRange__label">From (EGP)</label>
+          <input 
+            tabIndex={visible ? 0 : -1}
+            type="number" 
+            min={min} 
+            max={max} 
+            id="min" 
+            className="form-control priceRange__min" 
+            value={newMin}
+            onChange={this.handleChange}
+          />
+        </div>
+        <div className="priceRange__inputContainer">
+          <label htmlFor="max" className="priceRange__label">To (EGP)</label>
+          <input 
+            tabIndex={visible ? 0 : -1}
+            type="number" 
+            min={min} 
+            max={max} 
+            id="max" 
+            className="form-control priceRange__max" 
+            value={newMax}
+            onChange={this.handleChange}
+          />
+        </div>
+      </form>
+    );
+  }
 }
 
 export default PriceRange;
