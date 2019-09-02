@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import './Menu.scss';
 import CategoriesSidebar from './CategoriesSidebar';
@@ -15,219 +15,229 @@ const cart = {
   ]
 }
 
-const Menu = (props) => {
-  /* state */
-  const [ sidebarVisible, setSidebarVisible ] = useState(false);
-  const [ dropcartVisible, setDropcartVisible ] = useState(false);
-  const [ searchQuery, setSearchQuery ] = useState('');
-  const [ scrollPos, setScrollPos ] = useState({ prev: null, current: window.pageYOffset });
-  const [ topBarHidden, setTopBarHidden ] = useState(false);
+class Menu extends PureComponent {
+  state = {  
+    sidebarVisible: false,
+    dropcartVisible: false,
+    topBarHidden: false,
+    searchQuery: '',
+    scrollPos: { prev: null, current: window.pageYOffset }
+  }
 
-  /* refs */
-  const cartBtnRef        = useRef();
-  const sidebarTogglerRef = useRef();
-  const headerRef         = useRef();
-  const topBarRef         = useRef();
+  cartBtnRef        = createRef();
+  sidebarTogglerRef = createRef();
+  headerRef         = createRef();
+  topBarRef         = createRef();
 
-  /* DOM elements lengths */
-  const headerHeight = headerRef.current && headerRef.current.clientHeight;
-  const topBarHeight = topBarRef.current && topBarRef.current.clientHeight;
+  openSidebar = () => {
+    this.setState({ sidebarVisible: true });
+  };
 
-  const openSidebar = useCallback(() => {
-    setSidebarVisible(true);
-  }, []);
+  closeSidebar = () => {
+    this.setState({ sidebarVisible: false });
+  };
 
-  const closeSidebar = useCallback(() => {
-    setSidebarVisible(false);
-  }, []);
+  toggleCart = () => {
+    this.setState((prevState) => ({
+      dropcartVisible: !prevState.dropcartVisible 
+    }));
+  };
 
-  const toggleCart = useCallback(() => {
-    setDropcartVisible(!dropcartVisible);
-  }, [dropcartVisible]);
+  updateSearchQuery = (event) => {
+    this.setState({ searchQuery: event.target.value });
+  };
 
-  const closeCart = useCallback(() => {
-    setDropcartVisible(false);
-  }, [])
-
-  const updateSearchQuery = useCallback((event) => {
-    setSearchQuery(event.target.value)
-  }, []);
-
-  const handleSearchSubmit = useCallback((event) => {
+  handleSearchSubmit = (event) => {
     event.preventDefault();
-    props.history.push('./search');
-  }, []);
+    this.props.history.push('./search');
+  };
 
-  const handleScroll = useCallback(() => {
+  handleScroll = () => {
+    const { topBarHidden, scrollPos } = this.state;
+    const topBarHeight = this.topBarRef.current.clientHeight;
     const currentScrollPos = topBarHidden ? (window.pageYOffset + topBarHeight) : window.pageYOffset;
-    setScrollPos({ prev: scrollPos.current, current: currentScrollPos });
-  }, [topBarHidden, topBarHeight, scrollPos.current]);
-  
-  useEffect(function addScrollHandler() {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
-  });
+    this.setState({
+      scrollPos: { prev: scrollPos.current, current: currentScrollPos }
+    });
+  };
 
-  useEffect(function determineToBarVisibility() {
-    const { prev, current } = scrollPos;
+  determineTopBarVisibility = () => {
+    const { prev, current } = this.state.scrollPos;
     const down = (prev !== null) && current > prev;
-    if (down !== topBarHidden) {
+    if (down !== this.state.topBarHidden) {
       // To stop "handleScroll" until the "topBarHidden" state gets updated  
-      window.removeEventListener('scroll', handleScroll);
-      setTopBarHidden(down);
+      window.removeEventListener('scroll', this.handleScroll);
+      this.setState(
+        { topBarHidden: down },
+        () => { window.addEventListener('scroll', this.handleScroll); }
+      );
+    } 
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.scrollPos.current !== this.state.scrollPos.current) {
+      this.determineTopBarVisibility();
     }
-  }, [scrollPos.current]);
+  }
 
-  return (
-    <>
-      <header 
-        className="header"
-        style={{
-          top: topBarHidden ? `-${topBarHeight}px` : 0
-        }}
-        ref={headerRef}
-      >
-        <div className="container">
-          <h1 className="sr-only">Adidas</h1>
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
 
-          <div className="header__topBar" ref={topBarRef}>
-            {/* Secondary navigation */}
-            <nav className="servicesNav">
-              <h2 className="sr-only">Services Navigation</h2>
+  render() {
+    const { topBarHidden, sidebarVisible, searchQuery, dropcartVisible } = this.state;
+    const headerHeight = this.headerRef.current && this.headerRef.current.clientHeight;
+    const topBarHeight = this.topBarRef.current && this.topBarRef.current.clientHeight;
 
-              <ul className="list servicesNav__list">
-                {
-                  secondaryList.map((link, index) => (
-                    <li className="servicesNav__item" key={index}>
-                      <a href="#" className="link_color_white servicesNav__link">{link}</a>
-                    </li>
-                  ))
-                }
-              </ul>
-            </nav>
+    return (
+      <>
+        <header 
+          className="header"
+          style={{
+            top: topBarHidden ? `-${topBarHeight}px` : 0
+          }}
+          ref={this.headerRef}
+        >
+          <div className="container">
+            <h1 className="sr-only">Adidas</h1>
 
-            {/* login + languages list */}
-            <div className="auth-languages">
-              <a href="#" className="link_color_white header__loginLink">
-                <i className="fas fa-user mr-1" aria-hidden="true" /> Log in
-              </a>
+            <div className="header__topBar" ref={this.topBarRef}>
+              {/* Secondary navigation */}
+              <nav className="servicesNav">
+                <h2 className="sr-only">Services Navigation</h2>
 
-              <ul className="list header__languagesList">
-                <li>
-                  <button className="btn header__languageBtn" aria-label="Display page in English" data-active="true">
-                    <div className="header__languageImgContainer">
-                      <img className="img-fluid" src={usFlag} alt="US flag"/>
-                    </div>
-                  </button>
-                </li>
-                <li>
-                  <button className="btn header__languageBtn active" aria-label="Display page in arabic">
-                    <div className="header__languageImgContainer">
-                      <img className="img-fluid" src={egyptFlag} alt="Egypy flag"/>
-                    </div>
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div> {/* flex container */}
+                <ul className="list servicesNav__list">
+                  {
+                    secondaryList.map((link, index) => (
+                      <li className="servicesNav__item" key={index}>
+                        <a href="#" className="link_color_white servicesNav__link">{link}</a>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </nav>
 
-          {/* Main bar */}
-          <div className="header__mainBar">
-            {/* toggler */}
-            <button 
-              className="btn header__sidebarToggler"
-              aria-label="toggle categories sidebar"
-              aria-expanded={sidebarVisible}
-              aria-controls="categoriesSidebar"
-              onClick={openSidebar}
-              ref={sidebarTogglerRef}
-            >
-              <i className="fas fa-bars" aria-hidden="true" />
-            </button>
-            {/* sidebar */}
-            <CategoriesSidebar
-              close={closeSidebar}
-              categories={categories}
-              visible={sidebarVisible}
-              ref={sidebarTogglerRef}
-            />
-            {/* logo */}
-            <Link to="/" className={`header__logoLink${topBarHidden ? '' : ' large'}`}>
-              <img src={logo} alt="Adidas logo" className="header__logo"/>
-            </Link>
-            {/* desktop categories */}
-            <nav className="header__categoriesNav">
-              <h2 className="sr-only">Categories Navigation</h2>
-              <ul className="list header__categoriesList">
-                {
-                  categories.map((category, index) => (
-                    <li key={index}>
-                      <Link to="/category" className="link_color_white header__categoryLink">{category}</Link>
-                    </li>
-                  ))
-                }
-              </ul>
-            </nav>
-            {/* Page language */}
-            <button className="header__languageBtn2">اللغة العربية</button>
-            {/* search form */}
-            <form 
-              className="header__searchForm"
-              onSubmit={handleSearchSubmit}
-            >
-              <div className="input-group">
-                <button 
-                  type="submit"
-                  className="btn header__searchBtn input-group-prepend p-0"
-                  onClick={handleSearchSubmit}
-                >
-                  <span className="input-group-text">
-                    <i className="fas fa-search" aria-hidden="true" />
-                  </span>
-                </button>
-                <input 
-                  id="header__searchInput"
-                  className="form-control px-2 header__searchInput" 
-                  type="search" 
-                  placeholder="Search" 
-                  aria-label="Search for a product" 
-                  value={searchQuery}
-                  onChange={updateSearchQuery}
-                />
+              {/* login + languages list */}
+              <div className="auth-languages">
+                <a href="#" className="link_color_white header__loginLink">
+                  <i className="fas fa-user mr-1" aria-hidden="true" /> Log in
+                </a>
+
+                <ul className="list header__languagesList">
+                  <li>
+                    <button className="btn header__languageBtn" aria-label="Display page in English" data-active="true">
+                      <div className="header__languageImgContainer">
+                        <img className="img-fluid" src={usFlag} alt="US flag"/>
+                      </div>
+                    </button>
+                  </li>
+                  <li>
+                    <button className="btn header__languageBtn active" aria-label="Display page in arabic">
+                      <div className="header__languageImgContainer">
+                        <img className="img-fluid" src={egyptFlag} alt="Egypy flag"/>
+                      </div>
+                    </button>
+                  </li>
+                </ul>
               </div>
-            </form>
-            {/* cart button */}
-            <button 
-              className="header__cartBtn" 
-              aria-label="toggle cart dropdown"
-              aria-haspopup="true"
-              aria-expanded={dropcartVisible}
-              // aria-controls={dropCartVisible ? 'dropCartContainer' : null}
-              onClick={toggleCart}
-              // onKeyDown={handleEscKeyOnCart}
-              ref={cartBtnRef}
-            >
-              <i className="fas fa-shopping-cart fa-lg" aria-hidden="true" />
-              <span className="header__cartBadge">
-                {cart && cart.entries ? cart.entries.length : "0"}
-              </span>
-            </button>
-          </div> {/* main bar */}
-        </div> {/* container */}
-      </header>
-      <div 
-        className="headerFiller"
-        style={{
-          height: headerRef.current ? 
-                    topBarHidden ? `${headerHeight - topBarHeight}px` 
-                                 : `${headerHeight}px`
-                  : '5.5rem'
-        }} 
-      />
-    </>
-  );
+            </div> {/* flex container */}
+
+            {/* Main bar */}
+            <div className="header__mainBar">
+              {/* toggler */}
+              <button 
+                className="btn header__sidebarToggler"
+                aria-label="toggle categories sidebar"
+                aria-expanded={sidebarVisible}
+                aria-controls="categoriesSidebar"
+                onClick={this.openSidebar}
+                ref={this.sidebarTogglerRef}
+              >
+                <i className="fas fa-bars" aria-hidden="true" />
+              </button>
+              {/* sidebar */}
+              <CategoriesSidebar
+                close={this.closeSidebar}
+                categories={categories}
+                visible={sidebarVisible}
+                ref={this.sidebarTogglerRef}
+              />
+              {/* logo */}
+              <Link to="/" className={`header__logoLink${topBarHidden ? '' : ' large'}`}>
+                <img src={logo} alt="Adidas logo" className="header__logo"/>
+              </Link>
+              {/* desktop categories */}
+              <nav className="header__categoriesNav">
+                <h2 className="sr-only">Categories Navigation</h2>
+                <ul className="list header__categoriesList">
+                  {
+                    categories.map((category, index) => (
+                      <li key={index}>
+                        <Link to="/category" className="link_color_white header__categoryLink">{category}</Link>
+                      </li>
+                    ))
+                  }
+                </ul>
+              </nav>
+              {/* Page language */}
+              <button className="header__languageBtn2">اللغة العربية</button>
+              {/* search form */}
+              <form 
+                className="header__searchForm"
+                onSubmit={this.handleSearchSubmit}
+              >
+                <div className="input-group">
+                  <button 
+                    type="submit"
+                    className="btn header__searchBtn input-group-prepend p-0"
+                    onClick={this.handleSearchSubmit}
+                  >
+                    <span className="input-group-text">
+                      <i className="fas fa-search" aria-hidden="true" />
+                    </span>
+                  </button>
+                  <input 
+                    id="header__searchInput"
+                    className="form-control px-2 header__searchInput" 
+                    type="search" 
+                    placeholder="Search" 
+                    aria-label="Search for a product" 
+                    value={searchQuery}
+                    onChange={this.updateSearchQuery}
+                  />
+                </div>
+              </form>
+              {/* cart button */}
+              <button 
+                className="header__cartBtn" 
+                aria-label="toggle cart dropdown"
+                aria-haspopup="true"
+                aria-expanded={dropcartVisible}
+                // aria-controls={dropCartVisible ? 'dropCartContainer' : null}
+                onClick={this.toggleCart}
+                // onKeyDown={handleEscKeyOnCart}
+                ref={this.cartBtnRef}
+              >
+                <i className="fas fa-shopping-cart fa-lg" aria-hidden="true" />
+                <span className="header__cartBadge">
+                  {cart && cart.entries ? cart.entries.length : "0"}
+                </span>
+              </button>
+            </div> {/* main bar */}
+          </div> {/* container */}
+        </header>
+        <div 
+          className="headerFiller"
+          style={{
+            height: this.headerRef.current ? 
+                      topBarHidden ? `${headerHeight - topBarHeight}px` 
+                                  : `${headerHeight}px`
+                    : '5.5rem'
+          }} 
+        />
+      </>
+    );
+  }
 }
 
-export default withRouter(memo(Menu));
+export default withRouter(Menu);
