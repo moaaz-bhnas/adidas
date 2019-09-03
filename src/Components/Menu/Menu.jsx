@@ -117,30 +117,12 @@ class Menu extends PureComponent {
                 </ul>
               </nav>
 
-              {/* login + languages list */}
-              <div className="auth-languages">
-                <a href="#" className="link_color_white header__loginLink">
-                  <i className="fas fa-user mr-1" aria-hidden="true" /> Log in
-                </a>
-
-                <ul className="list header__languagesList">
-                  <li>
-                    <button className="btn header__languageBtn" aria-label="Display page in English" data-active="true">
-                      <div className="header__languageImgContainer">
-                        <img className="img-fluid" src={usFlag} alt="US flag"/>
-                      </div>
-                    </button>
-                  </li>
-                  <li>
-                    <button className="btn header__languageBtn active" aria-label="Display page in arabic">
-                      <div className="header__languageImgContainer">
-                        <img className="img-fluid" src={egyptFlag} alt="Egypy flag"/>
-                      </div>
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </div> {/* flex container */}
+              {/* login */}
+              <a href="#" className="link_color_white header__loginLink">
+                <i className="fas fa-user" aria-hidden="true" /> 
+                <span className="header__loginLinkText">Log in</span>
+              </a>
+            </div>
 
             {/* Main bar */}
             <div className="header__mainBar">
@@ -179,8 +161,6 @@ class Menu extends PureComponent {
                   }
                 </ul>
               </nav>
-              {/* Page language */}
-              <button className="header__languageBtn2">اللغة العربية</button>
               {/* search form */}
               <form 
                 className="header__searchForm"
