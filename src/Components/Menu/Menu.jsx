@@ -2,8 +2,6 @@ import React, { PureComponent, createRef } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import './Menu.scss';
 import CategoriesSidebar from './CategoriesSidebar';
-import egyptFlag from '../../img/egypt-flag.png';
-import usFlag from '../../img/us-flag.png';
 import logo from '../../img/logo.png';
 
 const secondaryList = ['Help', 'Track Order', 'Newsletter'];
