@@ -76,3 +76,14 @@ button {
 .text-underline {
   text-decoration: underline;
 }
+
+/* --- widgets */
+button,
+a {
+  @media screen and (max-width: 768px) {
+    &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+  }
+}
