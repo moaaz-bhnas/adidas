@@ -210,7 +210,7 @@ class Menu extends PureComponent {
             height: this.headerRef.current ? 
                       topBarHidden ? `${headerHeight - topBarHeight}px` 
                                   : `${headerHeight}px`
-                    : '5.5rem'
+                    : '5.5em'
           }} 
         />
       </>
